@@ -9,4 +9,4 @@
 ## Useful links and documents
 * Swift: [Interacting with Objective-C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35)
 * Text to speech app [Tutorial](https://www.appcoda.com/text-to-speech-ios-tutorial/)
-* 
+* Corso base di swift [Pagina](https://www.xcoding.it/lezione/programmazione-ad-oggetti-in-swift/)
