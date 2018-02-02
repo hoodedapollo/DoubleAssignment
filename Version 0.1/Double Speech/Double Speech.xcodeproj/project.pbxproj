@@ -7,100 +7,104 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A1E23A82024B48900C1C736 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E23A72024B48900C1C736 /* AppDelegate.swift */; };
-		2A1E23AA2024B48900C1C736 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E23A92024B48900C1C736 /* ViewController.swift */; };
-		2A1E23AD2024B48900C1C736 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E23AB2024B48900C1C736 /* Main.storyboard */; };
-		2A1E23AF2024B48900C1C736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E23AE2024B48900C1C736 /* Assets.xcassets */; };
-		2A1E23B22024B48900C1C736 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E23B02024B48900C1C736 /* LaunchScreen.storyboard */; };
-		2E4474F345672AB12EE0BF36 /* Pods_Double_Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A187A7E8EF1EF9BE60394E9 /* Pods_Double_Speech.framework */; };
+		2A4318472024CA2400013892 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4318462024CA2400013892 /* AppDelegate.swift */; };
+		2A4318492024CA2400013892 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4318482024CA2400013892 /* ViewController.swift */; };
+		2A43184C2024CA2400013892 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A43184A2024CA2400013892 /* Main.storyboard */; };
+		2A43184E2024CA2400013892 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A43184D2024CA2400013892 /* Assets.xcassets */; };
+		2A4318512024CA2400013892 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A43184F2024CA2400013892 /* LaunchScreen.storyboard */; };
+		2AAA2A082024CB520091119D /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAA2A092024CB520091119D /* Starscream.framework */; };
+		662EFBBBEAE740396ECDEB8A /* Pods_Double_Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E595C28EEE102E3D17023792 /* Pods_Double_Speech.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A187A7E8EF1EF9BE60394E9 /* Pods_Double_Speech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Double_Speech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A1E23A42024B48900C1C736 /* Double Speech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Double Speech.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A1E23A72024B48900C1C736 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A1E23A92024B48900C1C736 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2A1E23AC2024B48900C1C736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2A1E23AE2024B48900C1C736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2A1E23B12024B48900C1C736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2A1E23B32024B48900C1C736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E9826C473BDFD12C68C9ED8 /* Pods-Double Speech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Double Speech.release.xcconfig"; path = "Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech.release.xcconfig"; sourceTree = "<group>"; };
-		A0B42BC57AA4D3C4DC413C76 /* Pods-Double Speech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Double Speech.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech.debug.xcconfig"; sourceTree = "<group>"; };
+		05EBFB74D9ABB77463B58F8D /* Pods-Double Speech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Double Speech.release.xcconfig"; path = "Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech.release.xcconfig"; sourceTree = "<group>"; };
+		2A4318432024CA2400013892 /* Double Speech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Double Speech.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A4318462024CA2400013892 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2A4318482024CA2400013892 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2A43184B2024CA2400013892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2A43184D2024CA2400013892 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2A4318502024CA2400013892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2A4318522024CA2400013892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AAA2A092024CB520091119D /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69B781D68B78D297CC202304 /* Pods-Double Speech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Double Speech.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech.debug.xcconfig"; sourceTree = "<group>"; };
+		E595C28EEE102E3D17023792 /* Pods_Double_Speech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Double_Speech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2A1E23A12024B48900C1C736 /* Frameworks */ = {
+		2A4318402024CA2400013892 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E4474F345672AB12EE0BF36 /* Pods_Double_Speech.framework in Frameworks */,
+				2AAA2A082024CB520091119D /* Starscream.framework in Frameworks */,
+				662EFBBBEAE740396ECDEB8A /* Pods_Double_Speech.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		224C898D0E72FE014DF33459 /* Frameworks */ = {
+		0AFFDC4F2E6AFA9DDC681434 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2A187A7E8EF1EF9BE60394E9 /* Pods_Double_Speech.framework */,
+				69B781D68B78D297CC202304 /* Pods-Double Speech.debug.xcconfig */,
+				05EBFB74D9ABB77463B58F8D /* Pods-Double Speech.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		2A1E239B2024B48900C1C736 = {
+		2A43183A2024CA2400013892 = {
 			isa = PBXGroup;
 			children = (
-				2A1E23A62024B48900C1C736 /* Double Speech */,
-				2A1E23A52024B48900C1C736 /* Products */,
-				C72D6A1CBBF35E8D6A9874C2 /* Pods */,
-				224C898D0E72FE014DF33459 /* Frameworks */,
+				2A4318452024CA2400013892 /* Double Speech */,
+				2A4318442024CA2400013892 /* Products */,
+				0AFFDC4F2E6AFA9DDC681434 /* Pods */,
+				E630139C94B48347EB75B40B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		2A1E23A52024B48900C1C736 /* Products */ = {
+		2A4318442024CA2400013892 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2A1E23A42024B48900C1C736 /* Double Speech.app */,
+				2A4318432024CA2400013892 /* Double Speech.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2A1E23A62024B48900C1C736 /* Double Speech */ = {
+		2A4318452024CA2400013892 /* Double Speech */ = {
 			isa = PBXGroup;
 			children = (
-				2A1E23A72024B48900C1C736 /* AppDelegate.swift */,
-				2A1E23A92024B48900C1C736 /* ViewController.swift */,
-				2A1E23AB2024B48900C1C736 /* Main.storyboard */,
-				2A1E23AE2024B48900C1C736 /* Assets.xcassets */,
-				2A1E23B02024B48900C1C736 /* LaunchScreen.storyboard */,
-				2A1E23B32024B48900C1C736 /* Info.plist */,
+				2A4318462024CA2400013892 /* AppDelegate.swift */,
+				2A4318482024CA2400013892 /* ViewController.swift */,
+				2A43184A2024CA2400013892 /* Main.storyboard */,
+				2A43184D2024CA2400013892 /* Assets.xcassets */,
+				2A43184F2024CA2400013892 /* LaunchScreen.storyboard */,
+				2A4318522024CA2400013892 /* Info.plist */,
 			);
 			path = "Double Speech";
 			sourceTree = "<group>";
 		};
-		C72D6A1CBBF35E8D6A9874C2 /* Pods */ = {
+		E630139C94B48347EB75B40B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A0B42BC57AA4D3C4DC413C76 /* Pods-Double Speech.debug.xcconfig */,
-				3E9826C473BDFD12C68C9ED8 /* Pods-Double Speech.release.xcconfig */,
+				2AAA2A092024CB520091119D /* Starscream.framework */,
+				E595C28EEE102E3D17023792 /* Pods_Double_Speech.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2A1E23A32024B48900C1C736 /* Double Speech */ = {
+		2A4318422024CA2400013892 /* Double Speech */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A1E23B62024B48900C1C736 /* Build configuration list for PBXNativeTarget "Double Speech" */;
+			buildConfigurationList = 2A4318552024CA2400013892 /* Build configuration list for PBXNativeTarget "Double Speech" */;
 			buildPhases = (
-				EC3E2EE5E8F7133CCDCB9482 /* [CP] Check Pods Manifest.lock */,
-				2A1E23A02024B48900C1C736 /* Sources */,
-				2A1E23A12024B48900C1C736 /* Frameworks */,
-				2A1E23A22024B48900C1C736 /* Resources */,
-				76AB595C1BD17B85BCEB9C9A /* [CP] Embed Pods Frameworks */,
-				5DD698590526A173F8CBA661 /* [CP] Copy Pods Resources */,
+				7FE3E0E6106515393E147B38 /* [CP] Check Pods Manifest.lock */,
+				2A43183F2024CA2400013892 /* Sources */,
+				2A4318402024CA2400013892 /* Frameworks */,
+				2A4318412024CA2400013892 /* Resources */,
+				E3BEE51AFF858E72846CD0AB /* [CP] Embed Pods Frameworks */,
+				327FA9B4CB06775367231CC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -108,26 +112,26 @@
 			);
 			name = "Double Speech";
 			productName = "Double Speech";
-			productReference = 2A1E23A42024B48900C1C736 /* Double Speech.app */;
+			productReference = 2A4318432024CA2400013892 /* Double Speech.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2A1E239C2024B48900C1C736 /* Project object */ = {
+		2A43183B2024CA2400013892 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Luigi Secondo";
 				TargetAttributes = {
-					2A1E23A32024B48900C1C736 = {
+					2A4318422024CA2400013892 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 2A1E239F2024B48900C1C736 /* Build configuration list for PBXProject "Double Speech" */;
+			buildConfigurationList = 2A43183E2024CA2400013892 /* Build configuration list for PBXProject "Double Speech" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -135,31 +139,31 @@
 				en,
 				Base,
 			);
-			mainGroup = 2A1E239B2024B48900C1C736;
-			productRefGroup = 2A1E23A52024B48900C1C736 /* Products */;
+			mainGroup = 2A43183A2024CA2400013892;
+			productRefGroup = 2A4318442024CA2400013892 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2A1E23A32024B48900C1C736 /* Double Speech */,
+				2A4318422024CA2400013892 /* Double Speech */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2A1E23A22024B48900C1C736 /* Resources */ = {
+		2A4318412024CA2400013892 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A1E23B22024B48900C1C736 /* LaunchScreen.storyboard in Resources */,
-				2A1E23AF2024B48900C1C736 /* Assets.xcassets in Resources */,
-				2A1E23AD2024B48900C1C736 /* Main.storyboard in Resources */,
+				2A4318512024CA2400013892 /* LaunchScreen.storyboard in Resources */,
+				2A43184E2024CA2400013892 /* Assets.xcassets in Resources */,
+				2A43184C2024CA2400013892 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5DD698590526A173F8CBA661 /* [CP] Copy Pods Resources */ = {
+		327FA9B4CB06775367231CC8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -174,25 +178,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		76AB595C1BD17B85BCEB9C9A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EC3E2EE5E8F7133CCDCB9482 /* [CP] Check Pods Manifest.lock */ = {
+		7FE3E0E6106515393E147B38 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -210,33 +196,51 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E3BEE51AFF858E72846CD0AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2A1E23A02024B48900C1C736 /* Sources */ = {
+		2A43183F2024CA2400013892 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A1E23AA2024B48900C1C736 /* ViewController.swift in Sources */,
-				2A1E23A82024B48900C1C736 /* AppDelegate.swift in Sources */,
+				2A4318492024CA2400013892 /* ViewController.swift in Sources */,
+				2A4318472024CA2400013892 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2A1E23AB2024B48900C1C736 /* Main.storyboard */ = {
+		2A43184A2024CA2400013892 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A1E23AC2024B48900C1C736 /* Base */,
+				2A43184B2024CA2400013892 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		2A1E23B02024B48900C1C736 /* LaunchScreen.storyboard */ = {
+		2A43184F2024CA2400013892 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A1E23B12024B48900C1C736 /* Base */,
+				2A4318502024CA2400013892 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -244,7 +248,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2A1E23B42024B48900C1C736 /* Debug */ = {
+		2A4318532024CA2400013892 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -301,7 +305,7 @@
 			};
 			name = Debug;
 		};
-		2A1E23B52024B48900C1C736 /* Release */ = {
+		2A4318542024CA2400013892 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -351,9 +355,9 @@
 			};
 			name = Release;
 		};
-		2A1E23B72024B48900C1C736 /* Debug */ = {
+		2A4318562024CA2400013892 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0B42BC57AA4D3C4DC413C76 /* Pods-Double Speech.debug.xcconfig */;
+			baseConfigurationReference = 69B781D68B78D297CC202304 /* Pods-Double Speech.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -367,9 +371,9 @@
 			};
 			name = Debug;
 		};
-		2A1E23B82024B48900C1C736 /* Release */ = {
+		2A4318572024CA2400013892 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E9826C473BDFD12C68C9ED8 /* Pods-Double Speech.release.xcconfig */;
+			baseConfigurationReference = 05EBFB74D9ABB77463B58F8D /* Pods-Double Speech.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -386,25 +390,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A1E239F2024B48900C1C736 /* Build configuration list for PBXProject "Double Speech" */ = {
+		2A43183E2024CA2400013892 /* Build configuration list for PBXProject "Double Speech" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A1E23B42024B48900C1C736 /* Debug */,
-				2A1E23B52024B48900C1C736 /* Release */,
+				2A4318532024CA2400013892 /* Debug */,
+				2A4318542024CA2400013892 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A1E23B62024B48900C1C736 /* Build configuration list for PBXNativeTarget "Double Speech" */ = {
+		2A4318552024CA2400013892 /* Build configuration list for PBXNativeTarget "Double Speech" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A1E23B72024B48900C1C736 /* Debug */,
-				2A1E23B82024B48900C1C736 /* Release */,
+				2A4318562024CA2400013892 /* Debug */,
+				2A4318572024CA2400013892 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2A1E239C2024B48900C1C736 /* Project object */;
+	rootObject = 2A43183B2024CA2400013892 /* Project object */;
 }
