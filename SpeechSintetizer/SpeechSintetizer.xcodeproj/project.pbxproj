@@ -12,6 +12,7 @@
 		2AC86B89202472CD00BC368D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC86B87202472CD00BC368D /* Main.storyboard */; };
 		2AC86B8B202472CD00BC368D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC86B8A202472CD00BC368D /* Assets.xcassets */; };
 		2AC86B8E202472CD00BC368D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC86B8C202472CD00BC368D /* LaunchScreen.storyboard */; };
+		2AC86B97202475C100BC368D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC86B96202475C100BC368D /* AVFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		2AC86B8A202472CD00BC368D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC86B8D202472CD00BC368D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AC86B8F202472CD00BC368D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AC86B96202475C100BC368D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC86B97202475C100BC368D /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 			children = (
 				2AC86B82202472CD00BC368D /* SpeechSintetizer */,
 				2AC86B81202472CD00BC368D /* Products */,
+				2AC86B95202475C100BC368D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +66,14 @@
 				2AC86B8F202472CD00BC368D /* Info.plist */,
 			);
 			path = SpeechSintetizer;
+			sourceTree = "<group>";
+		};
+		2AC86B95202475C100BC368D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2AC86B96202475C100BC368D /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

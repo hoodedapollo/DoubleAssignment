@@ -2,7 +2,8 @@
 ## To do list
 1. Find a way to create, build and run a project on a device
 2. Generate speech from a string
-3. Set useful things to say
+3. Understand Double api's
+4. Generate speech of useful things of double
 
 
 ## Useful links and documents
