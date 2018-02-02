@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SpeechSintetizer.xcodeproj">
+      location = "self:Double Speech.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,9 +1,11 @@
-# Luigi's Branch
+# Project X
 ## To do list
-1. Find a way to create, build and run a project on a device
-2. Generate speech from a string
-3. Understand Double api's
-4. Generate speech of useful things of double
+1. Find a way to create, build and run a project on a device with xcode
+2. SWIFT: Elaborate system data from Double (look API)
+3. PYTHON: Find libraries about syntax and semanthics of languages
+4. SWIFT: send and receive web socket for communication with computer
+5. PYTHON: get web socket and send back text string
+6. SWIFT: speech received string
 
 
 ## Useful links and documents

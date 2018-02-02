@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  SpeechSintetizer
+//  Double Speech
 //
 //  Created by Luigi Secondo on 02/02/2018.
 //  Copyright © 2018 Luigi Secondo. All rights reserved.
