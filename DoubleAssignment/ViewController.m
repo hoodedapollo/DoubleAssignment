@@ -6,28 +6,22 @@
 //  Copyright © 2018 DoubleTeam. All rights reserved.
 //
 
-#include "key.h"
 
-// #ifdef TARGET_OS_IPHONE
-// #import <UIKit/UIImage.h>
-// typedef UIImage XXImage;
-// #else
-// #import <AppKit/NSImage.h>
-// typedef NSImage XXImage;
-// #endif
+#include "key.h"
+#include "precomp.h"
 
 @interface ViewController (/*private*/)
 
-@property (nonatomic, readonly)  NSString*               subscriptionKey;
+@property (nonatomic)  NSString*               subscriptionKey;
 //@property (nonatomic, readonly)  NSString*               luisAppId;
 // @property (nonatomic, readonly)  NSString*               luisSubscriptionID;
-@property (nonatomic, readonly)  NSString*               authenticationUri;
+@property (nonatomic)  NSString*               authenticationUri;
 // @property (nonatomic, readonly)  bool                    useMicrophone;
 // @property (nonatomic, readonly)  bool                    wantIntent;
-@property (nonatomic, readonly)  SpeechRecognitionMode   mode;
-@property (nonatomic, readonly)  NSString*               defaultLocale;
+@property (nonatomic)  SpeechRecognitionMode   mode;
+@property (nonatomic)  NSString*               defaultLocale;
 // @property (nonatomic, readonly)  NSDictionary*           settings;
-@property (nonatomic, readwrite) NSArray*                buttonGroup;
+@property (nonatomic) NSArray*                 buttonGroup;
 // @property (nonatomic, readonly)  NSUInteger              modeIndex;
 
 @end
@@ -39,6 +33,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 
 @implementation ViewController
 
+
 @synthesize startRecButton;
 @synthesize stopRecButton;
 
@@ -48,11 +43,11 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [super viewDidLoad];
     
     // defined in a header file
-    _subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
-    _authenticationUri = AUTHENTICATION_URL;
+    self.subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
+    self.authenticationUri = AUTHENTICATION_URL;
+    self.mode = SPEECHRECOGNITIONMODE;
     
-    _mode = SpeechRecognitionMode_ShortPhrase;
-    _defaultLocale =@"en-us"; // microphone language
+    defaultLocale =@"en-us"; // microphone language
     
     self.buttonGroup = [[NSArray alloc] initWithObjects:startRecButton,
                         stopRecButton,
@@ -70,7 +65,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [self setText : textOnScreen];
     [[self startRecButton] setEnabled: NO];
     
-    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Start speech recognition using microphone with %@ mode in %@ language ---\n\n"),
+    [self WriteLine: [[NSString alloc] initWithFormat:i(@"\n--- Start speech recognition using microphone with %@ mode in %@ language ---\n\n"),
                       self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long",
                       self.defaultLocale]];
     
@@ -81,12 +76,12 @@ NSString* ConvertSpeechErrorToString(int errorCode);
                                                                     withKey:(self.subscriptionKey)
                                                                withProtocol:(self)];
         
-        [[[self stopRecButton] setEnabled YES]
+        [[self stopRecButton] setEnabled YES]
     }
 }
 
-// this method handles the Click event of the stopRecButton control
-// @param sender The event sender
+    // this method handles the Click event of the stopRecButton control
+    // @param sender The event sender
 -(IBAction)StopRecButton_Click:(id)sender {
     [textOnScreen setString: ( @" ")];
     [self setText : textOnScreen];
@@ -95,14 +90,13 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [micClient endMicAndRecognition];
     
     [[ self startRecButton ] setEnabled: YES ];
-    
-    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Stop speech recognition using microphone with Short mode ---\n\n"),
-                      self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long"]];
-    
+        
+    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Stop speech recognition using microphone with Short mode ---\n\n"),                                      self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long"]];
+        
 }
-
-// Called when a final response is received.
-// @param response The final result.
+    
+    // Called when a final response is received.
+    // @param response The final result.
 -(void)onFinalResponseReceived:(RecognitionResult*)response {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self WriteLine:(@"********* Final n-BEST Results *********")];
@@ -110,12 +104,12 @@ NSString* ConvertSpeechErrorToString(int errorCode);
         {
             RecognizedPhrase* phrase = response.RecognizedPhrase[i];
             [self WriteLine:[[NSString alloc] initWithFormat:(@"[%d] Confidence=%@ Text=\"%@\""),
-                             i,
-                             ConvertSpeechRecoConfidenceEnumToString(phrase.Confidence),
-                             phrase.DisplayText]];
+                i,ConvertSpeechRecoConfidenceEnumToString(phrase.Confidence),
+                phrase.DisplayText]];
         }
-        [self WriteLine:(@"")];
-    });
+            
+            [self WriteLine:(@"")];
+        });
 }
 // Called when the microphone status has changed.
 // @param recording The current recording state
@@ -128,12 +122,12 @@ NSString* ConvertSpeechErrorToString(int errorCode);
             [[ self  startButton ] setEnabled: YES ];
         }
         [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];
-    });
+        });
 }
-
+    
 // method called when partial response is received
 // @param response is the partial result
-
+    
 -(void)onPartialResponseReceived:(NSString*) response {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self WriteLine:(@"--- Partial result received by onPartialResponseReceived ---")];
@@ -144,7 +138,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // Called when an error is received
 // @param errorMessage The error message.
 // @param errorCode The error code.  Refer to SpeechClientStatus for details.
-
+    
 -(void)onError:(NSString*)errorMessage withErrorCode:(int)errorCode {
     dispatch_async(dispatch_get_main_queue(), ^{
         [[ self  startButton ] setEnabled: YES ];
@@ -161,7 +155,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [textOnScreen appendString:(@"\n")];
     [self setText: textOnScreen];
 }
-
+    
 // Converts an integer error code to an error string.
 // @param errorCode The error code
 // @return The string representation of the error code.
@@ -185,7 +179,6 @@ NSString* ConvertSpeechErrorToString(int errorCode) {
         case SpeechClientStatus_MicrophoneStatusUnknown:return @"SpeechClientStatus_MicrophoneStatusUnknown";
         case SpeechClientStatus_InvalidArgument:        return @"SpeechClientStatus_InvalidArgument";
     }
-    
     return [[NSString alloc] initWithFormat:@"Unknown error: %d\n", errorCode];
 }
 
@@ -196,31 +189,31 @@ NSString* ConvertSpeechRecoConfidenceEnumToString(Confidence confidence) {
     switch (confidence) {
         case SpeechRecoConfidence_None:
             return @"None";
-            
+                
         case SpeechRecoConfidence_Low:
             return @"Low";
-            
+                
         case SpeechRecoConfidence_Normal:
             return @"Normal";
-            
+                
         case SpeechRecoConfidence_High:
             return @"High";
     }
 }
-
-
+    
+    
 //Action for low memory
 -(void)didReceiveMemoryWarning {
-#if !defined(TARGET_OS_MAC)
+    #if !defined(TARGET_OS_MAC)
     [ super  didReceiveMemoryWarning ];
-# endif
+    # endif
 }
-
+    
 // Appends text to the edit control.
 // @param text The text to set.
 - (void)setText:(NSString*)text {
-    [self.quoteText setString: text];
+    UNIVERSAL_TEXTVIEW_SETTEXT(self.quoteText, text);
     [self.quoteText scrollRangeToVisible:NSMakeRange([text length] - 1, 1)];
 }
-
+    
 @end
