@@ -33,6 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5E3E99EC2028BBA800EE63EE /* key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = key.h; sourceTree = "<group>"; };
+		5E3E99ED2028BBB900EE63EE /* precomp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = precomp.h; sourceTree = "<group>"; };
 		5E86F4DA2028AB2600874752 /* SpeechSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechSDK.framework; sourceTree = "<group>"; };
 		5EADE3CA2025C8EC00746096 /* DoubleAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EADE3CE2025C8EC00746096 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,6 +86,8 @@
 				5EADE3D12025C8EC00746096 /* AppDelegate.m */,
 				5EADE3D32025C8EC00746096 /* ViewController.h */,
 				5EADE3D42025C8EC00746096 /* ViewController.m */,
+				5E3E99ED2028BBB900EE63EE /* precomp.h */,
+				5E3E99EC2028BBA800EE63EE /* key.h */,
 				5EADE3D62025C8EC00746096 /* Main.storyboard */,
 				5EADE3D92025C8EC00746096 /* Assets.xcassets */,
 				5EADE3DB2025C8EC00746096 /* LaunchScreen.storyboard */,
@@ -314,6 +318,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Emaro.DoubleAssignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -330,6 +335,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Emaro.DoubleAssignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

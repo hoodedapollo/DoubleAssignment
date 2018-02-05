@@ -23,11 +23,13 @@
 // @property (nonatomic, readonly)  NSDictionary*           settings;
 @property (nonatomic) NSArray*                 buttonGroup;
 // @property (nonatomic, readonly)  NSUInteger              modeIndex;
+@property (nonatomic) OSStatus                  micStatus;
 
 @end
 
 NSString* ConvertSpeechRecoConfidenceEnumToString(Confidence confidence);
 NSString* ConvertSpeechErrorToString(int errorCode);
+
 
 // The Main App ViewController
 
@@ -44,7 +46,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     
     // defined in a header file
     self.subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
-    self.authenticationUri = AUTHENTICATION_URL;
+    self.authenticationUri = AUTHENTICATION_URI;
     self.mode = SPEECH_RECOGNITION_MODE;
     
     self.defaultLocale =@"en-us"; // microphone language
@@ -59,7 +61,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // @param sender The event sender
 
 -(IBAction)StartRecButton_Click:(id)sender {
-    NSString* recStartMsg;
+    //NSString* recStartMsg;
     
     [textOnScreen setString: ( @" ")];
     [self setText : textOnScreen];
@@ -75,9 +77,18 @@ NSString* ConvertSpeechErrorToString(int errorCode);
                                                                withLanguage:(self.defaultLocale)
                                                                     withKey:(self.subscriptionKey)
                                                                withProtocol:(self)];
-        
-        [[self stopRecButton] setEnabled: YES];
+        if(!micClient){
+            NSLog(@"micClient NOT created\n");
+        }
+        else{
+            NSLog(@"micClient created\n");
+            self.micStatus = [micClient startMicAndRecognition];
+            NSLog(@"microphone is:%d\n", self.micStatus);
+            [[self stopRecButton] setEnabled: YES];
+            NSLog(@"stopRecButton ENABLED\n");
+        }
     }
+    [[self stopRecButton] setEnabled: YES];
 }
 
     // this method handles the Click event of the stopRecButton control
@@ -88,8 +99,10 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [[self stopRecButton] setEnabled: NO];
     
     [micClient endMicAndRecognition];
+    NSLog(@"stop microphone recording\n");
     
     [[ self startRecButton ] setEnabled: YES ];
+    NSLog(@"startRecButton DISABLED\n");
         
     [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Stop speech recognition using microphone with Short mode ---\n\n"),                                      self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long"]];
         
@@ -98,6 +111,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     // Called when a final response is received.
     // @param response The final result.
 -(void)onFinalResponseReceived:(RecognitionResult*)response {
+    NSLog(@"receved a responsed from the server\n");
     dispatch_async(dispatch_get_main_queue(), ^{
         [self WriteLine:(@"********* Final n-BEST Results *********")];
         for (int i = 0; i < [response.RecognizedPhrase count]; i++)
@@ -106,9 +120,10 @@ NSString* ConvertSpeechErrorToString(int errorCode);
             [self WriteLine:[[NSString alloc] initWithFormat:(@"[%d] Confidence=%@ Text=\"%@\""),
                 i,ConvertSpeechRecoConfidenceEnumToString(phrase.Confidence),
                 phrase.DisplayText]];
+            NSLog(@"%@\n",phrase.DisplayText);
         }
-            
-            [self WriteLine:(@"")];
+        NSLog(@"phrase printed\n");
+        [self WriteLine:(@"")];
         });
 }
 // Called when the microphone status has changed.
