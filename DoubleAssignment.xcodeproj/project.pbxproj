@@ -7,16 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E86F4DB2028AB2600874752 /* SpeechSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E86F4DA2028AB2600874752 /* SpeechSDK.framework */; };
+		5E86F4DC2028AB2E00874752 /* SpeechSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E86F4DA2028AB2600874752 /* SpeechSDK.framework */; };
+		5E86F4DD2028AB2E00874752 /* SpeechSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E86F4DA2028AB2600874752 /* SpeechSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EADE3CF2025C8EC00746096 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EADE3CE2025C8EC00746096 /* main.m */; };
 		5EADE3D22025C8EC00746096 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EADE3D12025C8EC00746096 /* AppDelegate.m */; };
 		5EADE3D52025C8EC00746096 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EADE3D42025C8EC00746096 /* ViewController.m */; };
 		5EADE3D82025C8EC00746096 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EADE3D62025C8EC00746096 /* Main.storyboard */; };
 		5EADE3DA2025C8EC00746096 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EADE3D92025C8EC00746096 /* Assets.xcassets */; };
 		5EADE3DD2025C8EC00746096 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EADE3DB2025C8EC00746096 /* LaunchScreen.storyboard */; };
-		5EADE3EA2025D12900746096 /* SpeechSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EADE3E92025D12900746096 /* SpeechSDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5E86F4DE2028AB2E00874752 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5E86F4DD2028AB2E00874752 /* SpeechSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5E86F4DA2028AB2600874752 /* SpeechSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechSDK.framework; sourceTree = "<group>"; };
 		5EADE3CA2025C8EC00746096 /* DoubleAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EADE3CE2025C8EC00746096 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EADE3D02025C8EC00746096 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -27,7 +44,6 @@
 		5EADE3D92025C8EC00746096 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EADE3DC2025C8EC00746096 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EADE3DE2025C8EC00746096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EADE3E92025D12900746096 /* SpeechSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechSDK.framework; path = "../../../../../../Downloads/Cognitive-Speech-STT-iOS-master/MacOSX/SpeechSDK.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EADE3EA2025D12900746096 /* SpeechSDK.framework in Frameworks */,
+				5E86F4DB2028AB2600874752 /* SpeechSDK.framework in Frameworks */,
+				5E86F4DC2028AB2E00874752 /* SpeechSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +62,7 @@
 		5EADE3C12025C8EC00746096 = {
 			isa = PBXGroup;
 			children = (
+				5E86F4DA2028AB2600874752 /* SpeechSDK.framework */,
 				5EADE3CC2025C8EC00746096 /* DoubleAssignment */,
 				5EADE3CB2025C8EC00746096 /* Products */,
 				5EADE3E42025CEB200746096 /* Frameworks */,
@@ -86,7 +104,6 @@
 		5EADE3E42025CEB200746096 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5EADE3E92025D12900746096 /* SpeechSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,6 +118,7 @@
 				5EADE3C62025C8EC00746096 /* Sources */,
 				5EADE3C72025C8EC00746096 /* Frameworks */,
 				5EADE3C82025C8EC00746096 /* Resources */,
+				5E86F4DE2028AB2E00874752 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -288,6 +306,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2Y27V3MU38;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DoubleAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Emaro.DoubleAssignment;
@@ -300,6 +322,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2Y27V3MU38;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DoubleAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Emaro.DoubleAssignment;

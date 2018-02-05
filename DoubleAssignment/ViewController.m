@@ -46,8 +46,10 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     self.subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
     self.authenticationUri = AUTHENTICATION_URL;
     self.mode = SPEECHRECOGNITIONMODE;
+    self.mode = SPEECH_RECOGNITION_MODE;
     
     defaultLocale =@"en-us"; // microphone language
+    self.defaultLocale =@"en-us"; // microphone language
     
     self.buttonGroup = [[NSArray alloc] initWithObjects:startRecButton,
                         stopRecButton,
@@ -65,7 +67,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [self setText : textOnScreen];
     [[self startRecButton] setEnabled: NO];
     
-    [self WriteLine: [[NSString alloc] initWithFormat:i(@"\n--- Start speech recognition using microphone with %@ mode in %@ language ---\n\n"),
+    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Start speech recognition using microphone with %@ mode in %@ language ---\n\n"),
                       self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long",
                       self.defaultLocale]];
     
@@ -120,6 +122,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!recording) {
             [[ self  startButton ] setEnabled: YES ];
+            [[ self  startRecButton ] setEnabled: YES ];
         }
         [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];
         });
@@ -142,6 +145,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 -(void)onError:(NSString*)errorMessage withErrorCode:(int)errorCode {
     dispatch_async(dispatch_get_main_queue(), ^{
         [[ self  startButton ] setEnabled: YES ];
+        [[ self  startRecButton ] setEnabled: YES ];
         [self WriteLine:(@"--- Error received by onError ---")];
         [self WriteLine:[[NSString alloc] initWithFormat:(@"%@ %@"), errorMessage, ConvertSpeechErrorToString(errorCode)]];
         [self WriteLine:@""];

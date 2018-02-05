@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SpeechSDK/SpeechRecognitionService.h"
+#import <SpeechSDK/SpeechRecognitionService.h>
 
 @interface ViewController : UIViewController <SpeechRecognitionProtocol>
 {
