@@ -24,6 +24,7 @@
 @property (nonatomic) NSArray*                 buttonGroup;
 // @property (nonatomic, readonly)  NSUInteger              modeIndex;
 @property (nonatomic) bool stopRecButtonFlag;
+@property (nonatomic) NSInteger noRecCounter;
 
 @end
 
@@ -43,6 +44,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.noRecCounter = 0;
     
     // defined in a header file
     self.subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
@@ -120,6 +123,14 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     // @param response The final result.
 -(void)onFinalResponseReceived:(RecognitionResult*)response {
     NSLog(@"recieved a responsed from the server\n");
+    if ([response.RecognizedPhrase count] == 0)
+    {
+        self.noRecCounter++;
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Number of NOREC request: %ld", self.noRecCounter);
+    }
+    else{
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SENTENCE REQUEST");
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self WriteLine:(@"********* Final n-BEST Results *********")];
         for (int i = 0; i < [response.RecognizedPhrase count]; i++)
