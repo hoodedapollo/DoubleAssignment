@@ -13,15 +13,15 @@
 @interface ViewController (/*private*/)
 
 @property (nonatomic)  NSString*               subscriptionKey;
-//@property (nonatomic, readonly)  NSString*               luisAppId;
-// @property (nonatomic, readonly)  NSString*               luisSubscriptionID;
+@property (nonatomic)  NSString*               luisAppID;
+@property (nonatomic)  NSString*               luisSubscriptionID;
 @property (nonatomic)  NSString*               authenticationUri;
 // @property (nonatomic, readonly)  bool                    useMicrophone;
-// @property (nonatomic, readonly)  bool                    wantIntent;
+@property (nonatomic)  bool                    wantIntent;
 @property (nonatomic)  SpeechRecognitionMode   mode;
 @property (nonatomic)  NSString*               defaultLocale;
 // @property (nonatomic, readonly)  NSDictionary*           settings;
-@property (nonatomic) NSArray*                 buttonGroup;
+//@property (nonatomic) NSArray*                 buttonGroup;
 // @property (nonatomic, readonly)  NSUInteger              modeIndex;
 @property (nonatomic) bool stopRecButtonFlag;
 @property (nonatomic) NSInteger noRecCounter;
@@ -51,12 +51,15 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     self.subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
     self.authenticationUri = AUTHENTICATION_URI;
     self.mode = SPEECH_RECOGNITION_MODE;
+    self.luisAppID = LUIS_APP_ID;
+    self.luisSubscriptionID = LUIS_SUBSCRIPTION_ID;
     
+    self.wantIntent = YES;
     self.defaultLocale =@"en-us"; // microphone language
     
-    self.buttonGroup = [[NSArray alloc] initWithObjects:startRecButton,
-                        stopRecButton,
-                        nil];
+//    self.buttonGroup = [[NSArray alloc] initWithObjects:startRecButton,
+//                        stopRecButton,
+//                        nil];
     textOnScreen = [ NSMutableString  stringWithCapacity:  1000 ];
     
     [[self stopRecButton] setEnabled: NO];
@@ -72,16 +75,15 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [self setText : textOnScreen];
     [[self startRecButton] setEnabled: NO];
     
-    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Start speech recognition using microphone with %@ mode in %@ language ---\n\n"),
-                      self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long",
-                      self.defaultLocale]];
+    [self WriteLine: @"\n--- Start Speech Recognition using microphone with Short mode with Intent Recognition in en-us language ---\n\n"];
     
     if (micClient == nil)
     {
-        micClient = [SpeechRecognitionServiceFactory createMicrophoneClient:(self.mode)
-                                                               withLanguage:(self.defaultLocale)
-                                                                    withKey:(self.subscriptionKey)
-                                                               withProtocol:(self)];
+        micClient = [SpeechRecognitionServiceFactory createMicrophoneClientWithIntent:(self.defaultLocale)
+                                                                              withKey:(self.subscriptionKey)
+                                                                        withLUISAppID:(self.luisAppID)
+                                                                       withLUISSecret:(self.luisSubscriptionID)
+                                                                         withProtocol:(self)];
         
         NSLog(@"micClient created\n");
     }
@@ -115,8 +117,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [[ self startRecButton ] setEnabled: YES ];
     NSLog(@"startRecButton ENABLED\n");
         
-    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Stop speech recognition using microphone with Short mode ---\n\n"),                                                              self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long"]];
-        
+    [self WriteLine: @"\n--- Stop speech recognition using microphone with Short mode ---\n\n"];
+    
 }
     
     // Called when a final response is received.
@@ -149,18 +151,23 @@ NSString* ConvertSpeechErrorToString(int errorCode);
         [micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
     }
 }
+
+
+//Called when a final response is received and its intent is parsed
+//@param result The intent result.
+-(void)onIntentReceived:(IntentResult*) result {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self WriteLine:(@"--- Intent received by onIntentReceived ---")];
+        [self WriteLine:(result.Body)];
+        [self WriteLine:(@"")];
+    });
+}
+
 // Called when the microphone status has changed.
 // @param recording The current recording state
 -(void)onMicrophoneStatus:(Boolean)recording {
- //   if (!recording) {
- //       [micClient endMicAndRecognition];
- //   }
-   dispatch_async(dispatch_get_main_queue(), ^{
-//        if (!recording) {
-//            [[ self  startRecButton ] setEnabled: YES ];
-//        }
-        [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];
-        });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];});
 }
     
 // method called when partial response is received
@@ -171,7 +178,6 @@ NSString* ConvertSpeechErrorToString(int errorCode);
         [self WriteLine:(@"--- Partial result received by onPartialResponseReceived ---")];
         [self WriteLine:response];
     });
-    //[micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
 }
 
 // Called when an error is received
