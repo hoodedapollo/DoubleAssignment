@@ -17,6 +17,7 @@
 }
 
 @property(nonatomic, strong) IBOutlet UNIVERSAL_TEXTVIEW* quoteText;
+@property (weak, nonatomic) IBOutlet UILabel* headerText;
 
 @property(nonatomic, strong) IBOutlet UNIVERSAL_BUTTON* startRecButton;
 @property(nonatomic, strong) IBOutlet UNIVERSAL_BUTTON* stopRecButton;

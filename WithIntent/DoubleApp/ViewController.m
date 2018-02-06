@@ -75,7 +75,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [self setText : textOnScreen];
     [[self startRecButton] setEnabled: NO];
     
-    [self WriteLine: @"\n SPEECH RECOGNITION WITH INTENT DETECTION ENABLED \n\n"];
+    self.headerText.text = @"SPEECH RECOGNITION WITH INTENT DETECTION ENABLED";
     
     if (micClient == nil)
     {
@@ -117,7 +117,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [[ self startRecButton ] setEnabled: YES ];
     NSLog(@"startRecButton ENABLED\n");
         
-    [self WriteLine: @"\n SPEECH RECOGNITION DISABLED \n\n"];
+    self.headerText.text = @"SPEECH RECOGNITION DISABLED";
     
 }
     
@@ -177,9 +177,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     
 -(void)onPartialResponseReceived:(NSString*) response {
     dispatch_async(dispatch_get_main_queue(), ^{
-       [self WriteLine:(@"--- listening ---")];
-    
-    });
+        self.headerText.text = @"--- LISTENING ---";});
+        
 }
 
 // Called when an error is received
