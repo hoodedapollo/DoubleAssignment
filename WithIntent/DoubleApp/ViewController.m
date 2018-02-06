@@ -75,7 +75,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [self setText : textOnScreen];
     [[self startRecButton] setEnabled: NO];
     
-    [self WriteLine: @"\n--- Start Speech Recognition using microphone with Short mode with Intent Recognition in en-us language ---\n\n"];
+    [self WriteLine: @"\n SPEECH RECOGNITION WITH INTENT DETECTION ENABLED \n\n"];
     
     if (micClient == nil)
     {
@@ -117,7 +117,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [[ self startRecButton ] setEnabled: YES ];
     NSLog(@"startRecButton ENABLED\n");
         
-    [self WriteLine: @"\n--- Stop speech recognition using microphone with Short mode ---\n\n"];
+    [self WriteLine: @"\n SPEECH RECOGNITION DISABLED \n\n"];
     
 }
     
@@ -128,28 +128,30 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     if ([response.RecognizedPhrase count] == 0)
     {
         self.noRecCounter++;
-        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Number of NOREC request: %ld", self.noRecCounter);
+        NSLog(@"Number of NOREC request: %ld", self.noRecCounter);
     }
     else{
-        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SENTENCE REQUEST");
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self WriteLine:(@"********* Final n-BEST Results *********")];
-        for (int i = 0; i < [response.RecognizedPhrase count]; i++)
-        {
-            RecognizedPhrase* phrase = response.RecognizedPhrase[i];
-            [self WriteLine:[[NSString alloc] initWithFormat:(@"[%d] Confidence=%@ Text=\"%@\""),
-                i,ConvertSpeechRecoConfidenceEnumToString(phrase.Confidence),
-                phrase.DisplayText]];
-            NSLog(@"%@\n",phrase.DisplayText);
-        }
-        NSLog(@"phrase printed\n");
-        [self WriteLine:(@"")];
+        NSLog(@"SENTENCE REQUEST");
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self WriteLine:(@"********* Final n-BEST Results *********")];
+            for (int i = 0; i < [response.RecognizedPhrase count]; i++)
+            {
+                RecognizedPhrase* phrase = response.RecognizedPhrase[i];
+                [self WriteLine:[[NSString alloc] initWithFormat:(@"[%d] Confidence=%@ Text=\"%@\""),
+                                 i,ConvertSpeechRecoConfidenceEnumToString(phrase.Confidence),
+                                 phrase.DisplayText]];
+                NSLog(@"%@\n",phrase.DisplayText);
+            }
+            NSLog(@"phrase printed\n");
+            [self WriteLine:(@"")];
         });
+    }
     if (!self.stopRecButtonFlag) // if the stop button was not clicked
     {
         [micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
     }
+    
 }
 
 
@@ -166,8 +168,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // Called when the microphone status has changed.
 // @param recording The current recording state
 -(void)onMicrophoneStatus:(Boolean)recording {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];});
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];});
 }
     
 // method called when partial response is received
@@ -175,8 +177,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     
 -(void)onPartialResponseReceived:(NSString*) response {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self WriteLine:(@"--- Partial result received by onPartialResponseReceived ---")];
-        [self WriteLine:response];
+       [self WriteLine:(@"--- listening ---")];
+    
     });
 }
 
