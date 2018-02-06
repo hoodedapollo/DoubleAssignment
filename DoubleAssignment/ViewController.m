@@ -23,7 +23,7 @@
 // @property (nonatomic, readonly)  NSDictionary*           settings;
 @property (nonatomic) NSArray*                 buttonGroup;
 // @property (nonatomic, readonly)  NSUInteger              modeIndex;
-@property (nonatomic) OSStatus                  micStatus;
+@property (nonatomic) bool stopRecButtonFlag;
 
 @end
 
@@ -55,6 +55,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
                         stopRecButton,
                         nil];
     textOnScreen = [ NSMutableString  stringWithCapacity:  1000 ];
+    
+    [[self stopRecButton] setEnabled: NO];
 }
 
 // this method handles the Click event of the startRecButton control
@@ -77,18 +79,22 @@ NSString* ConvertSpeechErrorToString(int errorCode);
                                                                withLanguage:(self.defaultLocale)
                                                                     withKey:(self.subscriptionKey)
                                                                withProtocol:(self)];
-        if(!micClient){
-            NSLog(@"micClient NOT created\n");
-        }
-        else{
-            NSLog(@"micClient created\n");
-            self.micStatus = [micClient startMicAndRecognition];
-            NSLog(@"microphone is:%d\n", self.micStatus);
-            [[self stopRecButton] setEnabled: YES];
-            NSLog(@"stopRecButton ENABLED\n");
-        }
+        
+        NSLog(@"micClient created\n");
     }
+    
+    NSLog(@"micClient already exist\n");
+    
+    self.stopRecButtonFlag = NO; // enable continous recording behaviour (see onFinalResponse method)
+    
+    OSStatus startMicStatus = [micClient startMicAndRecognition]; // turns the microphone on and begins streaming data from the microphone to the sèeech recognition service.
+    if(startMicStatus)
+    {
+        [self WriteLine:[[NSString alloc] initWithFormat:(@"Error starting microphone recording. %@", ConvertSpeechErrorToString(startMicStatus))]];
+    }
+    NSLog(@"startMicStatus %d\n", startMicStatus);
     [[self stopRecButton] setEnabled: YES];
+    NSLog(@"stopRecButton ENABLED\n");
 }
 
     // this method handles the Click event of the stopRecButton control
@@ -97,21 +103,23 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [textOnScreen setString: ( @" ")];
     [self setText : textOnScreen];
     [[self stopRecButton] setEnabled: NO];
+    NSLog(@"stopRecButton DISABLED\n");
     
+    self.stopRecButtonFlag = YES; // disable continuous recording behaviour (see onFinalResponse method)
     [micClient endMicAndRecognition];
     NSLog(@"stop microphone recording\n");
     
     [[ self startRecButton ] setEnabled: YES ];
-    NSLog(@"startRecButton DISABLED\n");
+    NSLog(@"startRecButton ENABLED\n");
         
-    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Stop speech recognition using microphone with Short mode ---\n\n"),                                      self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long"]];
+    [self WriteLine: [[NSString alloc] initWithFormat:(@"\n--- Stop speech recognition using microphone with Short mode ---\n\n"),                                                              self.mode == SpeechRecognitionMode_ShortPhrase ? @"Short" : @"Long"]];
         
 }
     
     // Called when a final response is received.
     // @param response The final result.
 -(void)onFinalResponseReceived:(RecognitionResult*)response {
-    NSLog(@"receved a responsed from the server\n");
+    NSLog(@"recieved a responsed from the server\n");
     dispatch_async(dispatch_get_main_queue(), ^{
         [self WriteLine:(@"********* Final n-BEST Results *********")];
         for (int i = 0; i < [response.RecognizedPhrase count]; i++)
@@ -125,17 +133,21 @@ NSString* ConvertSpeechErrorToString(int errorCode);
         NSLog(@"phrase printed\n");
         [self WriteLine:(@"")];
         });
+    if (!self.stopRecButtonFlag) // if the stop button was not clicked
+    {
+        [micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
+    }
 }
 // Called when the microphone status has changed.
 // @param recording The current recording state
 -(void)onMicrophoneStatus:(Boolean)recording {
-    if (!recording) {
-        [micClient endMicAndRecognition];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (!recording) {
-            [[ self  startRecButton ] setEnabled: YES ];
-        }
+ //   if (!recording) {
+ //       [micClient endMicAndRecognition];
+ //   }
+   dispatch_async(dispatch_get_main_queue(), ^{
+//        if (!recording) {
+//            [[ self  startRecButton ] setEnabled: YES ];
+//        }
         [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];
         });
 }
@@ -148,6 +160,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
         [self WriteLine:(@"--- Partial result received by onPartialResponseReceived ---")];
         [self WriteLine:response];
     });
+    //[micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
 }
 
 // Called when an error is received
@@ -161,6 +174,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
         [self WriteLine:[[NSString alloc] initWithFormat:(@"%@ %@"), errorMessage, ConvertSpeechErrorToString(errorCode)]];
         [self WriteLine:@""];
     });
+    //[micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
 }
 
 // this method writes a line
