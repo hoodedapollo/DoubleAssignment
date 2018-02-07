@@ -12,12 +12,15 @@
 
 @interface ViewController : UIViewController <SpeechRecognitionProtocol>
 {
-    NSMutableString * textOnScreen;
+//    NSMutableString * textOnScreen;
     MicrophoneRecognitionClient* micClient;
 }
 
-@property(nonatomic, strong) IBOutlet UNIVERSAL_TEXTVIEW* quoteText;
+//@property(nonatomic, strong) IBOutlet UNIVERSAL_TEXTVIEW* quoteText;
 @property (weak, nonatomic) IBOutlet UILabel* headerText;
+@property (weak, nonatomic) IBOutlet UILabel *myResultsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myIntentsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myEntitiesLabel;
 
 @property(nonatomic, strong) IBOutlet UNIVERSAL_BUTTON* startRecButton;
 @property(nonatomic, strong) IBOutlet UNIVERSAL_BUTTON* stopRecButton;

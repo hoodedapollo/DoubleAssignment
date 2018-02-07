@@ -25,6 +25,9 @@
 // @property (nonatomic, readonly)  NSUInteger              modeIndex;
 @property (nonatomic) bool stopRecButtonFlag;
 @property (nonatomic) NSInteger noRecCounter;
+@property (nonatomic) NSMutableString *myResults;
+@property (nonatomic) NSMutableString *myIntentsList;
+@property (nonatomic) NSMutableString *myEntitiesList;
 
 @end
 
@@ -60,7 +63,10 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 //    self.buttonGroup = [[NSArray alloc] initWithObjects:startRecButton,
 //                        stopRecButton,
 //                        nil];
-    textOnScreen = [ NSMutableString  stringWithCapacity:  1000 ];
+//    textOnScreen = [ NSMutableString  stringWithCapacity:  1000 ];
+    self.myResults = [ NSMutableString  stringWithCapacity:  1000 ];
+    self.myIntentsList = [ NSMutableString  stringWithCapacity:  1000 ];
+    self.myEntitiesList = [ NSMutableString  stringWithCapacity:  1000 ];
     
     [[self stopRecButton] setEnabled: NO];
 }
@@ -69,10 +75,11 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // @param sender The event sender
 
 -(IBAction)StartRecButton_Click:(id)sender {
-    //NSString* recStartMsg;
     
-    [textOnScreen setString: ( @" ")];
-    [self setText : textOnScreen];
+    
+    //[textOnScreen setString: ( @" ")];
+    //[self setText : textOnScreen];
+    
     [[self startRecButton] setEnabled: NO];
     
     self.headerText.text = @"SPEECH RECOGNITION WITH INTENT DETECTION ENABLED";
@@ -95,7 +102,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     OSStatus startMicStatus = [micClient startMicAndRecognition]; // turns the microphone on and begins streaming data from the microphone to the sèeech recognition service.
     if(startMicStatus)
     {
-        [self WriteLine:[[NSString alloc] initWithFormat:(@"Error starting microphone recording. %@", ConvertSpeechErrorToString(startMicStatus))]];
+//        [self WriteLine:[[NSString alloc] initWithFormat:(@"Error starting microphone recording. %@", ConvertSpeechErrorToString(startMicStatus))]];
     }
     NSLog(@"startMicStatus %d\n", startMicStatus);
     [[self stopRecButton] setEnabled: YES];
@@ -105,8 +112,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     // this method handles the Click event of the stopRecButton control
     // @param sender The event sender
 -(IBAction)StopRecButton_Click:(id)sender {
-    [textOnScreen setString: ( @" ")];
-    [self setText : textOnScreen];
+    //[textOnScreen setString: ( @" ")];
+    //[self setText : textOnScreen];
     [[self stopRecButton] setEnabled: NO];
     NSLog(@"stopRecButton DISABLED\n");
     
@@ -133,18 +140,21 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     else{
         NSLog(@"SENTENCE REQUEST");
         
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self WriteLine:(@"********* Final n-BEST Results *********")];
+            [self.myResults setString: ( @"")];
+            [self.myResults appendString: @"Final n-BEST Results:\n\n"];
             for (int i = 0; i < [response.RecognizedPhrase count]; i++)
             {
                 RecognizedPhrase* phrase = response.RecognizedPhrase[i];
-                [self WriteLine:[[NSString alloc] initWithFormat:(@"[%d] Confidence=%@ Text=\"%@\""),
+                [self.myResults appendString: [NSString stringWithFormat:(@"[%d] Confidence=%@ Text=\"%@\"\n"),
                                  i,ConvertSpeechRecoConfidenceEnumToString(phrase.Confidence),
                                  phrase.DisplayText]];
                 NSLog(@"%@\n",phrase.DisplayText);
             }
             NSLog(@"phrase printed\n");
-            [self WriteLine:(@"")];
+            self.myResultsLabel.text = self.myResults;
+            NSLog(@"dovrebbe stampare qui:%@", self.myResults);
         });
     }
     if (!self.stopRecButtonFlag) // if the stop button was not clicked
@@ -159,9 +169,32 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 //@param result The intent result.
 -(void)onIntentReceived:(IntentResult*) result {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self WriteLine:(@"--- Intent received by onIntentReceived ---")];
-        [self WriteLine:(result.Body)];
-        [self WriteLine:(@"")];
+        NSLog(@"------%@, ", result.Body);
+        NSString *jsonString = result.Body;
+        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSArray *myIntents = [json objectForKey:@"intents"];
+        NSArray *myEntities = [json objectForKey:@"entities"];
+        
+        //NSLog(@"///////////--- Intents Detected ---\nTop Scoring Intent: %@\nwith score: %@", [myIntents[0] objectForKey:@"intent"], [myIntents[0] objectForKey:@"score"] );
+       
+        self.myIntentsLabel.text = [[NSString alloc] initWithFormat:@"--- Intents Detected ---\n\nTop Scoring Intent: %@\nwith score: %@",
+                                    [myIntents[0] objectForKey:@"intent"],
+                                    [myIntents[0] objectForKey:@"score"]];
+        
+        
+        [self.myEntitiesList setString:@"--- Entities Detected ---\n\n"];
+        for (int i = 0; i < [myEntities count]; i++)
+        {
+        [self.myEntitiesList appendString:[[NSString alloc] initWithFormat:@"Entity: %@ Type: %@ \n",
+                                       [myEntities[i] objectForKey:@"entity"],
+                                       [myEntities[i] objectForKey:@"type"]]];
+        
+        }
+        
+        self.myEntitiesLabel.text = self.myEntitiesList;
+        
+        //To do the same with the entities...
     });
 }
 
@@ -186,22 +219,22 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // @param errorCode The error code.  Refer to SpeechClientStatus for details.
     
 -(void)onError:(NSString*)errorMessage withErrorCode:(int)errorCode {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[ self  startRecButton ] setEnabled: YES ];
-        [self WriteLine:(@"--- Error received by onError ---")];
-        [self WriteLine:[[NSString alloc] initWithFormat:(@"%@ %@"), errorMessage, ConvertSpeechErrorToString(errorCode)]];
-        [self WriteLine:@""];
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[ self  startRecButton ] setEnabled: YES ];
+//        [self WriteLine:(@"--- Error received by onError ---")];
+//        [self WriteLine:[[NSString alloc] initWithFormat:(@"%@ %@"), errorMessage, ConvertSpeechErrorToString(errorCode)]];
+//        [self WriteLine:@""];
+//    });
     //[micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
 }
 
 // this method writes a line
 // @param text is the line to be write
--(void)WriteLine:(NSString*)text {
-    [textOnScreen appendString:(text)];
-    [textOnScreen appendString:(@"\n")];
-    [self setText: textOnScreen];
-}
+//-(void)WriteLine:(NSString*)text {
+//    [textOnScreen appendString:(text)];
+//    [textOnScreen appendString:(@"\n")];
+//    [self setText: textOnScreen];
+//}
     
 // Converts an integer error code to an error string.
 // @param errorCode The error code
@@ -258,9 +291,9 @@ NSString* ConvertSpeechRecoConfidenceEnumToString(Confidence confidence) {
     
 // Appends text to the edit control.
 // @param text The text to set.
-- (void)setText:(NSString*)text {
-    UNIVERSAL_TEXTVIEW_SETTEXT(self.quoteText, text);
-    [self.quoteText scrollRangeToVisible:NSMakeRange([text length] - 1, 1)];
-}
+//- (void)setText:(NSString*)text {
+//    UNIVERSAL_TEXTVIEW_SETTEXT(self.quoteText, text);
+//    [self.quoteText scrollRangeToVisible:NSMakeRange([text length] - 1, 1)];
+//}
     
 @end
