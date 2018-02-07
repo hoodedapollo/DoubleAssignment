@@ -75,9 +75,9 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 -(IBAction)StartRecButton_Click:(id)sender {
     
     [[self startRecButton] setEnabled: NO]; // disable stopRecButton
-/*** [SpeechAndIntentRecognizer startRecording] ***/
     self.headerText.text = @"SPEECH RECOGNITION WITH INTENT DETECTION ENABLED"; // set the header label text
     
+/*** [SpeechAndIntentRecognizer startRecording] ***/
     if (micClient == nil) // if there is no MicrophoneClientWithIntent create it
     {
         micClient = [SpeechRecognitionServiceFactory createMicrophoneClientWithIntent:(self.defaultLocale)
@@ -99,15 +99,15 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // @param sender The event sender
 -(IBAction)StopRecButton_Click:(id)sender {
     
-    self.noRecCounter = 0; // reinitialize the counter of empty response due to silence
     [[self stopRecButton] setEnabled: NO]; // disable stopRecButton
     
 /*** [SpeechAndIntentRecognizer stopRecording] ***/
+    self.noRecCounter = 0; // reinitialize the counter of empty response due to silence
     self.stopRecButtonFlag = YES; // disable continuous recording behaviour (see onFinalResponse method)
     [micClient endMicAndRecognition]; // disable the microphone and disconnect from the server
-    self.headerText.text = @"SPEECH RECOGNITION DISABLED"; // set the Header lable
 /*** END ***/
     
+    self.headerText.text = @"SPEECH RECOGNITION DISABLED"; // set the Header lable
     [[ self startRecButton ] setEnabled: YES ]; // enable startRecButton
     
 }
