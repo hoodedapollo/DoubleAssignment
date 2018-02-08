@@ -28,7 +28,7 @@
 @property (nonatomic) NSMutableString *myResults;
 @property (nonatomic) NSMutableString *myIntentsList;
 @property (nonatomic) NSMutableString *myEntitiesList;
-
+@property (nonatomic) NSObject* SpeechMachine; 
 @end
 
 NSString* ConvertSpeechRecoConfidenceEnumToString(Confidence confidence);
@@ -48,24 +48,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 -(void)viewDidLoad {
     [super viewDidLoad];
 /*** [SpeechAndIntentRecognizer initializer] (initialize method)***/
-    self.noRecCounter = 0; // initialize the counter of the empty response due to silence
-    
-    // set the values as defined in the key.h header file
-    self.subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
-    self.authenticationUri = AUTHENTICATION_URI;
-    self.mode = SPEECH_RECOGNITION_MODE;
-    self.luisAppID = LUIS_APP_ID;
-    self.luisSubscriptionID = LUIS_SUBSCRIPTION_ID;
-    
-    self.wantIntent = YES; // specify you want also intent recognition besides speech recognition
-    self.defaultLocale =@"en-us"; // speech recognition language
-    
-    // declare strings to print text on UI labeles
-    self.myResults = [ NSMutableString  stringWithCapacity:  1000 ];
-    self.myIntentsList = [ NSMutableString  stringWithCapacity:  1000 ];
-    self.myEntitiesList = [ NSMutableString  stringWithCapacity:  1000 ];
-    
-    [[self stopRecButton] setEnabled: NO]; // disable stopRecButton
+SpeechMachine = SpeechAndIntentRecognizerFactory;
 /*** END ***/
 }
 
@@ -78,17 +61,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     self.headerText.text = @"SPEECH RECOGNITION WITH INTENT DETECTION ENABLED"; // set the header label text
     
 /*** [SpeechAndIntentRecognizer startRecording] ***/
-    if (micClient == nil) // if there is no MicrophoneClientWithIntent create it
-    {
-        micClient = [SpeechRecognitionServiceFactory createMicrophoneClientWithIntent:(self.defaultLocale)
-                                                                              withKey:(self.subscriptionKey)
-                                                                        withLUISAppID:(self.luisAppID)
-                                                                       withLUISSecret:(self.luisSubscriptionID)
-                                                                         withProtocol:(self)];
-    }
-
-    self.stopRecButtonFlag = NO; // enable continous recording behaviour (see onFinalResponse method)
-    [micClient startMicAndRecognition];  //
+    [SpeechMachine startRecording];
 /*** END ***/
     
     [[self stopRecButton] setEnabled: YES];  // enable the stopRecButton
@@ -102,9 +75,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [[self stopRecButton] setEnabled: NO]; // disable stopRecButton
     
 /*** [SpeechAndIntentRecognizer stopRecording] ***/
-    self.noRecCounter = 0; // reinitialize the counter of empty response due to silence
-    self.stopRecButtonFlag = YES; // disable continuous recording behaviour (see onFinalResponse method)
-    [micClient endMicAndRecognition]; // disable the microphone and disconnect from the server
+    [SpeechMachine stopRecording];
 /*** END ***/
     
     self.headerText.text = @"SPEECH RECOGNITION DISABLED"; // set the Header lable
