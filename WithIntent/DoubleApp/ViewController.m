@@ -9,6 +9,7 @@
 
 #include "key.h"
 #include "precomp.h"
+#include "SpeechAndIntentRecognizer.h"
 
 @interface ViewController (/*private*/)
 
