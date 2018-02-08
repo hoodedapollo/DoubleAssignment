@@ -25,6 +25,9 @@
 // @property (nonatomic, readonly)  NSUInteger              modeIndex;
 @property (nonatomic) bool stopRecButtonFlag;
 @property (nonatomic) NSInteger noRecCounter;
+@property (nonatomic) NSInteger noRecPartialCounter;
+@property (nonatomic) NSInteger notEmptyCounter;
+@property (nonatomic) NSInteger totalCounter;
 @property (nonatomic) NSMutableString *myResults;
 @property (nonatomic) NSMutableString *myIntentsList;
 @property (nonatomic) NSMutableString *myEntitiesList;
@@ -48,8 +51,9 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 -(void)viewDidLoad {
     [super viewDidLoad];
 /*** [SpeechAndIntentRecognizer initializer] (initialize method)***/
+    self.notEmptyCounter = 0;
     self.noRecCounter = 0; // initialize the counter of the empty response due to silence
-    
+    self.totalCounter = 0;
     // set the values as defined in the key.h header file
     self.subscriptionKey = SUBSCRIPTION_KEY; // set the subscription key as the one defined in the header file
     self.authenticationUri = AUTHENTICATION_URI;
@@ -102,7 +106,11 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     [[self stopRecButton] setEnabled: NO]; // disable stopRecButton
     
 /*** [SpeechAndIntentRecognizer stopRecording] ***/
-    self.noRecCounter = 0; // reinitialize the counter of empty response due to silence
+    self.notEmptyCounter = 0;
+    self.noRecCounter = 0; // initialize the counter of the empty response due to silence
+    self.totalCounter = 0;
+    self.noRecPartialCounter = 0;
+    
     self.stopRecButtonFlag = YES; // disable continuous recording behaviour (see onFinalResponse method)
     [micClient endMicAndRecognition]; // disable the microphone and disconnect from the server
 /*** END ***/
@@ -117,14 +125,17 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // Called when a final response is received.
 // @param response The final result.
 -(void)onFinalResponseReceived:(RecognitionResult*)response {
+    self.totalCounter++;
     
     if ([response.RecognizedPhrase count] == 0)  // if the chunks sent were just silence
     {
         self.noRecCounter++; // increase the noRec counter
-        NSLog(@"Number of NOREC request: %ld", self.noRecCounter);
+        self.noRecPartialCounter++;
     }
     else // the response contains recognized phrases with the related confidence
     {
+        self.notEmptyCounter++;
+        
         // convert all the recognized results in one string to be shown in the corresponding UIlabel
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -138,11 +149,29 @@ NSString* ConvertSpeechErrorToString(int errorCode);
             }
             
             self.myResultsLabel.text = self.myResults;
+            
         });
     }
+    
+    NSLog(@"Number of NOTEMPTY requests: %ld", self.notEmptyCounter);
+    NSLog(@"Number of NOREC requests: %ld", self.noRecCounter);
+    NSLog(@"Number of TOTAL requests: %ld", self.totalCounter);
+    
     if (!self.stopRecButtonFlag) // if the stop button was not clicked
     {
         [micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)
+        if (self.noRecPartialCounter > 10) {
+            sleep(2); // needed to reinitialize the micClient correctly
+            self.noRecPartialCounter = 0;
+            [micClient endMicAndRecognition];
+//            sleep(2); // it should be put here, between the stop and the "reinitialization and start", but it reached 200 rec with the other configuration
+            micClient = [SpeechRecognitionServiceFactory createMicrophoneClientWithIntent:(self.defaultLocale)
+                                                                                  withKey:(self.subscriptionKey)
+                                                                            withLUISAppID:(self.luisAppID)
+                                                                           withLUISSecret:(self.luisSubscriptionID)
+                                                                             withProtocol:(self)];
+            [micClient startMicAndRecognition];
+        }
     }
 }
 
@@ -185,10 +214,11 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // Called when the microphone status has changed.
 // @param recording The current recording state
 -(void)onMicrophoneStatus:(Boolean)recording {
-    if (!self.stopRecButtonFlag) // if the stop button was not clicked
-    {
-        [micClient startMicAndRecognition]; // reactivate the microphone after the connection is closed due to too many empty response (silence)
-    }
+//    if (!self.stopRecButtonFlag) // if the stop button was not clicked and not evry time after recieving a response
+//    {
+//        [micClient startMicAndRecognition]; // reactivate the microphone after the response is recieved (continous behaviuour)‚‚‚‚‚
+        //self.noRecCounter = 0;
+//    }
     //    dispatch_async(dispatch_get_main_queue(), ^{
     //        [self WriteLine:[[NSString alloc] initWithFormat:(@"********* Microphone status: %d *********"), recording]];});
 }
@@ -207,6 +237,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
 // @param errorCode The error code.  Refer to SpeechClientStatus for details.
 
 -(void)onError:(NSString*)errorMessage withErrorCode:(int)errorCode {
+    NSLog(@"**************************************** Error received by onError ---/n%@ %@", errorMessage, ConvertSpeechErrorToString(errorCode));
     dispatch_async(dispatch_get_main_queue(), ^{
         [[ self  startRecButton ] setEnabled: YES ]; // enable the startRecButton
         // show the error code and relative message in the Header Lable
