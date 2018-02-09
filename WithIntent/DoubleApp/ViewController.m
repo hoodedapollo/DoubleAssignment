@@ -172,6 +172,7 @@ NSString* ConvertSpeechErrorToString(int errorCode);
     NSLog(@"Number of NOREC requests: %ld", self.noRecCounter);
     NSLog(@"Number of TOTAL requests: %ld", self.totalCounter);
     NSLog(@"Number of NORECPARTIAL requests: %ld", self.noRecPartialCounter);
+    NSLog(@"ACTUAL KEY %@", self.actualSubscriptionKey);
     
     NSInteger waitTime;
         int wT;
@@ -207,7 +208,8 @@ NSString* ConvertSpeechErrorToString(int errorCode);
             {
                 self.actualSubscriptionKey = self.subscriptionKey;
             }
-            NSLog(@"ACTUAL KEY %@", self.actualSubscriptionKey);
+            
+            [micClient endMicAndRecognition];
             //[NSThread sleepForTimeInterval: waitTime];
             NSLog(@"SLEEEEEEEEEEEEEEEPING");
             sleep(wT);
