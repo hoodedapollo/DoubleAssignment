@@ -38,10 +38,11 @@ class ViewController: UIViewController {
         var batteryL: Float {
             return UIDevice.current.batteryLevel
         }
-        var batteryLevel : Float
-        batteryLevel = batteryL * 100
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        var batteryLevel : Int
+        batteryLevel = Int(batteryL * 100)
         let toSpeech = "My battery level is \(batteryLevel) per cent"
-        myUtterance = AVSpeechUtterance( string: toSpeech)
+        myUtterance = AVSpeechUtterance( string: "\(toSpeech)")
         myUtterance.rate = 0.5
         synth.speak(myUtterance)
     }
@@ -50,7 +51,9 @@ class ViewController: UIViewController {
     @IBAction func ipSpeech(_ sender: UIButton) {
         var ipAdress : [String]
         ipAdress = getIFAddresses()
-        myUtterance = AVSpeechUtterance( string: ipAdress[0])
+        var toSpeech : String
+        toSpeech = "My ip adress is \(ipAdress[0])"
+        myUtterance = AVSpeechUtterance( string: toSpeech)
         myUtterance.rate = 0.5
         synth.speak(myUtterance)
     }
