@@ -27,11 +27,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func textToSpeech(_ sender: UIButton) {
-        myUtterance = AVSpeechUtterance(string: textView.text)
-        myUtterance.rate = 0.5
-        synth.speak(myUtterance)
-    }
     
     // Speeches battery level of the device
     @IBAction func batterySpeech(_ sender: UIButton) {
@@ -42,7 +37,7 @@ class ViewController: UIViewController {
         var batteryLevel : Int
         batteryLevel = Int(batteryL * 100)
         let toSpeech = "My battery level is \(batteryLevel) per cent"
-        myUtterance = AVSpeechUtterance( string: "\(toSpeech)")
+        myUtterance = AVSpeechUtterance( string: toSpeech)
         myUtterance.rate = 0.5
         synth.speak(myUtterance)
     }
