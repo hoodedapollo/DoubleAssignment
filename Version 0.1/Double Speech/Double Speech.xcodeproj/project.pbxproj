@@ -12,9 +12,25 @@
 		2A43184C2024CA2400013892 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A43184A2024CA2400013892 /* Main.storyboard */; };
 		2A43184E2024CA2400013892 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A43184D2024CA2400013892 /* Assets.xcassets */; };
 		2A4318512024CA2400013892 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A43184F2024CA2400013892 /* LaunchScreen.storyboard */; };
-		2AAA2A082024CB520091119D /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAA2A092024CB520091119D /* Starscream.framework */; };
+		2A56F3F12030481C0011D095 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A56F3F02030481C0011D095 /* Starscream.framework */; };
+		2A56F4262030562B0011D095 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAA2A092024CB520091119D /* Starscream.framework */; };
+		2A56F4272030562B0011D095 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAA2A092024CB520091119D /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		662EFBBBEAE740396ECDEB8A /* Pods_Double_Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E595C28EEE102E3D17023792 /* Pods_Double_Speech.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2A56F4282030562B0011D095 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2A56F4272030562B0011D095 /* Starscream.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05EBFB74D9ABB77463B58F8D /* Pods-Double Speech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Double Speech.release.xcconfig"; path = "Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech.release.xcconfig"; sourceTree = "<group>"; };
@@ -25,6 +41,7 @@
 		2A43184D2024CA2400013892 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A4318502024CA2400013892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A4318522024CA2400013892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A56F3F02030481C0011D095 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = ../../Websocket/WebSocket/Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		2AAA2A092024CB520091119D /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69B781D68B78D297CC202304 /* Pods-Double Speech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Double Speech.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Double Speech/Pods-Double Speech.debug.xcconfig"; sourceTree = "<group>"; };
 		E595C28EEE102E3D17023792 /* Pods_Double_Speech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Double_Speech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,8 +52,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AAA2A082024CB520091119D /* Starscream.framework in Frameworks */,
 				662EFBBBEAE740396ECDEB8A /* Pods_Double_Speech.framework in Frameworks */,
+				2A56F4262030562B0011D095 /* Starscream.framework in Frameworks */,
+				2A56F3F12030481C0011D095 /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				2AAA2A092024CB520091119D /* Starscream.framework */,
+				2A56F3F02030481C0011D095 /* Starscream.framework */,
 				E595C28EEE102E3D17023792 /* Pods_Double_Speech.framework */,
 			);
 			name = Frameworks;
@@ -105,6 +124,8 @@
 				2A4318412024CA2400013892 /* Resources */,
 				E3BEE51AFF858E72846CD0AB /* [CP] Embed Pods Frameworks */,
 				327FA9B4CB06775367231CC8 /* [CP] Copy Pods Resources */,
+				2A56F3F2203048910011D095 /* ShellScript */,
+				2A56F4282030562B0011D095 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,6 +184,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2A56F3F2203048910011D095 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveSwift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveCocoa.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		327FA9B4CB06775367231CC8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

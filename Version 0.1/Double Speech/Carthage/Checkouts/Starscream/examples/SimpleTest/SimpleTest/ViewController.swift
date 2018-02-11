@@ -1,34 +1,25 @@
 //
 //  ViewController.swift
-//  Double Speech
+//  SimpleTest
 //
-//  Created by Luigi Secondo on 02/02/2018.
-//  Copyright © 2018 Luigi Secondo. All rights reserved.
+//  Created by Dalton Cherry on 8/12/14.
+//  Copyright (c) 2014 vluxe. All rights reserved.
 //
 
 import UIKit
 import Starscream
 
-
 class ViewController: UIViewController, WebSocketDelegate {
-
     var socket: WebSocket!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         var request = URLRequest(url: URL(string: "http://localhost:8080")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
         socket.connect()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     // MARK: Websocket Delegate Methods.
     
@@ -42,7 +33,7 @@ class ViewController: UIViewController, WebSocketDelegate {
         } else if let e = error {
             print("websocket is disconnected: \(e.localizedDescription)")
         } else {
-            print("websocket disconnected")
+             print("websocket disconnected")
         }
     }
     
@@ -56,12 +47,9 @@ class ViewController: UIViewController, WebSocketDelegate {
     
     // MARK: Write Text Action
     
-    @IBAction func writeText(_ sender: UIButton) {
+    @IBAction func writeText(_ sender: UIBarButtonItem) {
         socket.write(string: "hello there!")
     }
-//    @IBAction func writeText(_ sender: UIBarButtonItem) {
-//        socket.write(string: "hello there!")
-//    }
     
     // MARK: Disconnect Action
     
@@ -74,7 +62,6 @@ class ViewController: UIViewController, WebSocketDelegate {
             socket.connect()
         }
     }
-
-
+    
 }
 
