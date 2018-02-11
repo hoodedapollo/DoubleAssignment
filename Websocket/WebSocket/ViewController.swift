@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     }
     
     func echoText(infoText : String){
-        let ws = WebSocket("ws://172.20.10.4:4040/websocketserver")
+        let ws = WebSocket("ws://192.168.178.30:4040/websocketserver")
         let send : ()->() = {
             ws.send(infoText)
         }
