@@ -37,7 +37,6 @@
 		2A56F40B20304E430011D095 /* WebSocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebSocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A56F421203050FB0011D095 /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = Carthage/Build/iOS/SwiftWebSocket.framework; sourceTree = "<group>"; };
 		2A56F42920305F070011D095 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		2ADECE11203245C3003E84CE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2ADECE1B203248E4003E84CE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = WebSocket/AppDelegate.swift; sourceTree = "<group>"; };
 		2ADECE1C203248E4003E84CE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = WebSocket/Info.plist; sourceTree = "<group>"; };
 		2ADECE1D203248E4003E84CE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = WebSocket/ViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +65,6 @@
 		2A56F40220304E430011D095 = {
 			isa = PBXGroup;
 			children = (
-				2ADECE11203245C3003E84CE /* Default-568h@2x.png */,
 				2A56F40D20304E430011D095 /* WebSocket */,
 				2A56F40C20304E430011D095 /* Products */,
 				2A56F420203050FB0011D095 /* Frameworks */,
