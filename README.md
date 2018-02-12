@@ -131,7 +131,18 @@ ___
 
 ### 4. Generate a natural language sentence
 
-In order to compose natural language sentences we decided to formulate phrases dividing them in 3 blocks: first one is 
+In order to compose natural language sentences we decided to formulate phrases dividing them in 3 blocks: first one is realtive to a greeting, then the real information is provided and in the end is provided a suggestion realtive to internal state. Each block is randomly chosen in a list of possible utterances.
+
+| Greeting | Information | Suggestion |
+|:------:|:-----:|:----------|
+| Hello | my battery level is ** | Could you charge me? |
+| Good morning | my power is ** | I'm running out of battery! |
+| Ciao! |  | Please, help! No battery |
+| Hi, | battery power is | I can still make it for a couple of hours |
+| Good evening | iPad's battery is | Don't forget the charger |
+| Good to see you |  | At your orders Captain |
+| Haloa |  | I'm in perfect shape, let's go! |
+| Namaste |  | Charged & Fast! |
 ___
 
 ### 5. Speech received sentence
