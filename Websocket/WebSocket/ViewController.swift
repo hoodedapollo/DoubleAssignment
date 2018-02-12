@@ -10,7 +10,20 @@ import UIKit
 import SwiftWebSocket
 import AVFoundation
 
-class ViewController: UIViewController {
+struct DoubleMessage : Codable {
+    var typeID: String
+    var value: String
+    var name: String
+}
+let ws = WebSocket("ws://130.251.13.162:8080/websocketserver")
+
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    //MARK: Properties
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var userNameLabel: UILabel!
+    
+    
     
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
@@ -19,37 +32,58 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        nameTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    //MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        userNameLabel.text = textField.text
+    }
+    
+    //MARK: actions
+    @IBAction func setDefaultName(_ sender: UIButton) {
+        userNameLabel.text = "Emaro student"
+        nameTextField.text = ""
+    }
     
     @IBAction func Battery(_ sender: UIButton) {
-        
         var batteryL: Float {
             return UIDevice.current.batteryLevel
         }
         UIDevice.current.isBatteryMonitoringEnabled = true
         var batteryLevel : Int
         batteryLevel = Int(batteryL * 100)
-        var toSpeech : String
-        toSpeech = "battery_" + String(batteryLevel)
-        echoText(infoText : toSpeech)
+//        var toSpeech : String
+        let toSpeech = DoubleMessage(typeID: "battery", value: String(batteryLevel), name: userNameLabel.text!)
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try? jsonEncoder.encode(toSpeech)
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        echoText(infoText : jsonString!)
     }
     
     @IBAction func ipAdress(_ sender: UIButton) {
         var ipAdress : [String]
         ipAdress = getIFAddresses()
-        var toSpeech : String
-        toSpeech = "ipAdress_" + ipAdress[0]
-        echoText(infoText: toSpeech)
+        let toSpeech = DoubleMessage(typeID: "ipAddress", value: ipAdress[2], name: userNameLabel.text!)
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try? jsonEncoder.encode(toSpeech)
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        echoText(infoText : jsonString!)
     }
     
     func echoText(infoText : String){
-        let ws = WebSocket("ws://130.251.13.145:4040/websocketserver")
+        
         let send : ()->() = {
             ws.send(infoText)
         }

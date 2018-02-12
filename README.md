@@ -116,17 +116,17 @@ func echoText(infoText : String){
             }
         }
 ```
-Internal state informations are sent via a predefined standard to compose a string as follows: 
-```python
-"Type value" + "_" + " value "
-
-# Predefined value id:
-iPad battery level: battery
-ip adress of iPad: ipAdress
+Internal state informations are sent in JSON format which is composed converting this struct:
+```swift
+struct DoubleMessage {
+        var typeID: String
+        var value: String
+    }
 
 # Example: battery level is 56%
 "battery_56"
 ```
+To generate a new message to be sent you simply have to generate a new `DoubleMessage`
 ___
 
 ### 4. Generate a natural language sentence
