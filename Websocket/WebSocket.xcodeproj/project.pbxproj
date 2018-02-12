@@ -11,11 +11,11 @@
 		2A56F41120304E430011D095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A56F41020304E430011D095 /* ViewController.swift */; };
 		2A56F41420304E430011D095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A56F41220304E430011D095 /* Main.storyboard */; };
 		2A56F41620304E430011D095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A56F41520304E430011D095 /* Assets.xcassets */; };
-		2A56F41920304E430011D095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A56F41720304E430011D095 /* LaunchScreen.storyboard */; };
 		2A56F422203050FB0011D095 /* SwiftWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A56F421203050FB0011D095 /* SwiftWebSocket.framework */; };
 		2A56F423203054990011D095 /* SwiftWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A56F421203050FB0011D095 /* SwiftWebSocket.framework */; };
 		2A56F424203054990011D095 /* SwiftWebSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A56F421203050FB0011D095 /* SwiftWebSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2A56F42A20305F070011D095 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A56F42920305F070011D095 /* AVFoundation.framework */; };
+		2AFBF65B2031B293006EF585 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AFBF65A2031B293006EF585 /* ExternalAccessory.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,10 +38,11 @@
 		2A56F41020304E430011D095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2A56F41320304E430011D095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A56F41520304E430011D095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2A56F41820304E430011D095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A56F41A20304E430011D095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A56F421203050FB0011D095 /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = Carthage/Build/iOS/SwiftWebSocket.framework; sourceTree = "<group>"; };
 		2A56F42920305F070011D095 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2AFBF6562031B254006EF585 /* DoubleControlSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DoubleControlSDK.framework; path = "../../../Downloads/Basic-Control-SDK-iOS-master/DoubleControlSDK.framework"; sourceTree = "<group>"; };
+		2AFBF65A2031B293006EF585 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AFBF65B2031B293006EF585 /* ExternalAccessory.framework in Frameworks */,
 				2A56F42A20305F070011D095 /* AVFoundation.framework in Frameworks */,
 				2A56F423203054990011D095 /* SwiftWebSocket.framework in Frameworks */,
 				2A56F422203050FB0011D095 /* SwiftWebSocket.framework in Frameworks */,
@@ -82,7 +84,6 @@
 				2A56F41020304E430011D095 /* ViewController.swift */,
 				2A56F41220304E430011D095 /* Main.storyboard */,
 				2A56F41520304E430011D095 /* Assets.xcassets */,
-				2A56F41720304E430011D095 /* LaunchScreen.storyboard */,
 				2A56F41A20304E430011D095 /* Info.plist */,
 			);
 			path = WebSocket;
@@ -91,6 +92,8 @@
 		2A56F420203050FB0011D095 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2AFBF65A2031B293006EF585 /* ExternalAccessory.framework */,
+				2AFBF6562031B254006EF585 /* DoubleControlSDK.framework */,
 				2A56F42920305F070011D095 /* AVFoundation.framework */,
 				2A56F421203050FB0011D095 /* SwiftWebSocket.framework */,
 			);
@@ -157,7 +160,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A56F41920304E430011D095 /* LaunchScreen.storyboard in Resources */,
 				2A56F41620304E430011D095 /* Assets.xcassets in Resources */,
 				2A56F41420304E430011D095 /* Main.storyboard in Resources */,
 			);
@@ -184,14 +186,6 @@
 				2A56F41320304E430011D095 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2A56F41720304E430011D095 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A56F41820304E430011D095 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -313,13 +307,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = WebSocket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SocialD.WebSocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -332,13 +328,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = WebSocket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SocialD.WebSocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -116,17 +116,22 @@ func echoText(infoText : String){
             }
         }
 ```
-Internal state informations are sent via a predefined JSON standard as follows: 
-```json
-{
-    "dataID": "battery",
-    "value": "batteryLevel",
-}
+Internal state informations are sent via a predefined standard to compose a string as follows: 
+```python
+"Type value" + "_" + " value "
+
+# Predefined value id:
+iPad battery level: battery
+ip adress of iPad: ipAdress
+
+# Example: battery level is 56%
+"battery_56"
 ```
 ___
 
 ### 4. Generate a natural language sentence
 
+In order to compose natural language sentences we decided to formulate phrases dividing them in 3 blocks: first one is 
 ___
 
 ### 5. Speech received sentence
@@ -150,3 +155,4 @@ ___
 * Corso base di swift: [Pagina](https://www.xcoding.it/lezione/programmazione-ad-oggetti-in-swift/)
 * Web socket Swift library: [SwiftWebSocket](https://github.com/tidwall/SwiftWebSocket)
 * Web socket Python library: [Tornado](http://www.tornadoweb.org/en/stable/)
+* Double API repository [Github](https://github.com/doublerobotics/Basic-Control-SDK-iOS)

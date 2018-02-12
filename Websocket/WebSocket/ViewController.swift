@@ -15,9 +15,6 @@ class ViewController: UIViewController {
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
     
-    var operationDictionary : [String : String] = ["battery":"0","other":"0"]
-    
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +32,24 @@ class ViewController: UIViewController {
         var batteryL: Float {
             return UIDevice.current.batteryLevel
         }
-        print("bottone premuto")
         UIDevice.current.isBatteryMonitoringEnabled = true
         var batteryLevel : Int
         batteryLevel = Int(batteryL * 100)
         var toSpeech : String
-        toSpeech = String(batteryLevel)
-//        echoTest()
+        toSpeech = "battery_" + String(batteryLevel)
         echoText(infoText : toSpeech)
     }
     
+    @IBAction func ipAdress(_ sender: UIButton) {
+        var ipAdress : [String]
+        ipAdress = getIFAddresses()
+        var toSpeech : String
+        toSpeech = "ipAdress_" + ipAdress[0]
+        echoText(infoText: toSpeech)
+    }
+    
     func echoText(infoText : String){
-        let ws = WebSocket("ws://192.168.178.30:4040/websocketserver")
+        let ws = WebSocket("ws://130.251.13.106:4040/websocketserver")
         let send : ()->() = {
             ws.send(infoText)
         }
@@ -71,5 +74,36 @@ class ViewController: UIViewController {
         myUtterance = AVSpeechUtterance( string: speech)
         myUtterance.rate = 0.5
         synth.speak(myUtterance)
+    }
+    func getIFAddresses() -> [String] {
+        var addresses = [String]()
+        
+        // Get list of all interfaces on the local machine:
+        var ifaddr : UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&ifaddr) == 0 else { return [] }
+        guard let firstAddr = ifaddr else { return [] }
+        
+        // For each interface ...
+        for ptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+            let flags = Int32(ptr.pointee.ifa_flags)
+            let addr = ptr.pointee.ifa_addr.pointee
+        
+            // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
+            if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
+                if addr.sa_family == UInt8(AF_INET) || addr.sa_family == UInt8(AF_INET6) {
+        
+                    // Convert interface address to a human readable string:
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    if (getnameinfo(ptr.pointee.ifa_addr, socklen_t(addr.sa_len), &hostname, socklen_t(hostname.count),
+                                    nil, socklen_t(0), NI_NUMERICHOST) == 0) {
+                        let address = String(cString: hostname)
+                        addresses.append(address)
+                    }
+                }
+            }
+        }
+        
+        freeifaddrs(ifaddr)
+        return addresses
     }
 }

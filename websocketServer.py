@@ -42,35 +42,54 @@ class server(tornado.websocket.WebSocketHandler):
 
 
 def messageHandler(message):
-    try:
-        value = int(message)
-    except ValueError:
-        return "invalid string!"
+    # Detection of type value
+    receivedData = message.split("_")
+    if receivedData[0] == "battery":
+        try:
+            value = int(receivedData[1])
+        except ValueError:
+            return "invalid string!"
+"""
+        if(value >= 0):
 
-    if(value >= 0):
-
-        if(value < 6):
-            return "Please charge me, I'm dying..."
-        if(value < 20) and (value > 5):
-            return "I have to sleep, but i can still make it for a couple of hours"
-        if (value < 51) and (value > 19):
-            return "I'm a little bit tired, but i can still work if you need!"
-        if (value > 50) and (value < 71):
-            return "Ready to operate! At your orders Captain"
-        if(value > 70) and (value < 96):
-            return "Charged & Fast!"
-        if(value > 95):
-            return "I'm in perfect shape, let's go!"
+            if(value < 6):
+                return "Please charge me, I'm dying..."
+            if(value < 20) and (value > 5):
+                return "I have to sleep, but i can still make it for a couple of hours"
+            if (value < 51) and (value > 19):
+                return "I'm a little bit tired, but i can still work if you need!"
+            if (value > 50) and (value < 71):
+                return "Ready to operate! At your orders Captain"
+            if(value > 70) and (value < 96):
+                return "Charged & Fast!"
+            if(value > 95):
+                return "I'm in perfect shape, let's go!"
+            else:
+                return "invalid value, please provide the correct battery level"
         else:
             return "invalid value, please provide the correct battery level"
-    else:
-        return "invalid value, please provide the correct battery level"
+"""
+        if(value >= 0):
+            if value <= 20
+                #danger situation
+                lowbattery = [""]
+            if value > 20 and value <= 75
+                #normal situation
+            if value > 75
+                #perfect condition
+        else:
+            return "invalid value, please provide the correct battery level"
+    elif receivedData[0] == "ipAdress":
+        return "My ip adress is" + receivedData[1]
 
 wsServer = tornado.web.Application([
     (r'/websocketserver', server),
 ])
 
-
+print ("Server started correctly!")
+ip = socket.gethostbyname(socket.gethostname())
+feedback = "Listening on ws://" + ip + ":4040/websocketserver"
+print(feedback)
 http_server = tornado.httpserver.HTTPServer(wsServer)
 http_server.listen(4040)
 tornado.ioloop.IOLoop.instance().start()
