@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/luigi/Git/Double Assignment/WebSocket/AppDelegate.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/luigi/Git/Double Assignment/WebSocket/Assets.xcassets">
+   </FileRef>
+   <FileRef
+      location = "group:../WebSocket/Base.lproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/luigi/Git/Double Assignment/WebSocket/Info.plist">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/luigi/Git/Double Assignment/WebSocket/ViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "self:/Users/luigi/Git/Double Assignment/WebSocket/WebSocket.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -66,7 +66,7 @@
                                 <color key="backgroundColor" red="0.34758311510000001" green="0.43696379660000001" blue="0.96475487950000005" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Server's ip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVR-lv-MET">
                                 <rect key="frame" x="16" y="334" width="163" height="21"/>
@@ -75,13 +75,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wx6-yK-4Qw">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert server port" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wx6-yK-4Qw">
                                 <rect key="frame" x="193" y="363" width="163" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.34758311510000001" green="0.43696379660000001" blue="0.96475487950000005" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Port" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0F-a9-gM4">
                                 <rect key="frame" x="193" y="333" width="163" height="21"/>
@@ -95,6 +95,10 @@
                     </view>
                     <connections>
                         <outlet property="nameTextField" destination="Fvq-Yc-jNF" id="GyD-Nr-h1c"/>
+                        <outlet property="serverIpLabel" destination="kVR-lv-MET" id="vFM-Iq-lDJ"/>
+                        <outlet property="serverIpText" destination="4o4-Yq-DPr" id="NiI-Xa-Ztf"/>
+                        <outlet property="serverPortLabel" destination="W0F-a9-gM4" id="OBf-aZ-zj2"/>
+                        <outlet property="serverPortText" destination="wx6-yK-4Qw" id="hwe-j5-EXZ"/>
                         <outlet property="userNameLabel" destination="yDG-mw-ac9" id="obw-rL-ZSb"/>
                     </connections>
                 </viewController>

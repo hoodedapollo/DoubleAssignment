@@ -1,6 +1,0 @@
-framework module Pods_Double_Speech {
-  umbrella header "Pods-Double Speech-umbrella.h"
-
-  export *
-  module * { export * }
-}

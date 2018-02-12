@@ -82,7 +82,7 @@ ___
 
 ### 3. Send state server via web socket
 
-After a research for possible solutions to implement a web socket client in swift, we decided to use the Swift framework called SwiftWebSocekt (here is link for [github repository](https://github.com/tidwall/SwiftWebSocket))
+After a research for possible solutions to implement a web socket client in swift, we decided to use the Swift framework called SwiftWebSocket (here is link for [github repository](https://github.com/tidwall/SwiftWebSocket)).
 It is a library expressly developed to create a WebSocket client and the API is modeled after the Javascript API.
 With a single function, called for each request, it is possible to manage all the aspects relative to a connection with a server.
 It is required to add SwiftWebSocket framework to the project ( we suggest to use [Carthage](https://github.com/Carthage/Carthage)) and the directive `import SwiftWebSocket`.
@@ -116,7 +116,7 @@ func echoText(infoText : String){
             }
         }
 ```
-Internal state informations are sent in JSON format which is composed converting this struct:
+Internal state information are sent in JSON format which is composed converting this struct:
 ```swift
 struct DoubleMessage {
         var typeID: String
@@ -131,23 +131,23 @@ ___
 
 ### 4. Generate a natural language sentence
 
-In order to compose natural language sentences we decided to formulate phrases dividing them in 3 blocks: first one is realtive to a greeting, then the real information is provided and in the end is provided a suggestion realtive to internal state. Each block is randomly chosen in a list of possible utterances.
+In order to compose natural language we decided to formulate some sentences dividing them in 3 blocks: first one is realtive to a greeting, then the real information is provided and in the end a suggestion relative to internal state is provided. Each block is randomly chosen in a list of possible utterances.
 
 | Greeting | Information | Suggestion |
 |:------:|:-----:|:----------|
 | Hello | my battery level is ** | Could you charge me? |
 | Good morning | my power is ** | I'm running out of battery! |
-| Ciao! |  | Please, help! No battery |
-| Hi, | battery power is | I can still make it for a couple of hours |
-| Good evening | iPad's battery is | Don't forget the charger |
-| Good to see you |  | At your orders Captain |
-| Haloa |  | I'm in perfect shape, let's go! |
+| Ciao, | iPad's battery is ** | Please, help! No battery |
+| Hi, | battery power is ** | I can still make it for a couple of hours |
+| Good evening |  | Don't forget the charger |
+| Good to see you |  | As you command Captain! |
+| Aloha |  | I'm in perfect shape, let's go! |
 | Namaste |  | Charged & Fast! |
 ___
 
 ### 5. Speech received sentence
 
-For speech generation we decided to use AVFoundation framework developed by Apple, because it is easly integrable in an iOS application. To utter a sentence you have to implement this symple code in the main class `ViewController: UIViewController`:
+For speech generation we decided to use AVFoundation framework developed by Apple, because it is easily integrable in an iOS application. To utter a sentence you have to implement this simple code in the main class `ViewController: UIViewController`:
 ```swift
 let synth = AVSpeechSynthesizer()
 var myUtterance = AVSpeechUtterance(string: "")
@@ -163,7 +163,6 @@ ___
 ### Sources
 * Swift: [Interacting with Objective-C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35)
 * Text to speech app swift 2014: [Tutorial](https://code.tutsplus.com/tutorials/create-a-text-to-speech-app-with-swift--cms-22229)
-* Corso base di swift: [Pagina](https://www.xcoding.it/lezione/programmazione-ad-oggetti-in-swift/)
 * Web socket Swift library: [SwiftWebSocket](https://github.com/tidwall/SwiftWebSocket)
 * Web socket Python library: [Tornado](http://www.tornadoweb.org/en/stable/)
 * Double API repository [Github](https://github.com/doublerobotics/Basic-Control-SDK-iOS)
