@@ -47,6 +47,11 @@ batSuggestion = [
     ". I'm in perfect shape, let's go!",
     ". Charged & Fast!"]
 
+ipInfo = [
+	". My ip address is",
+	". I'm connected to the network with address ",
+	". You can find me in the network at the address ",]
+
 #Colors used in console log of the websocket server
 #nothing special, but useful to visualize errors clearly
 
@@ -125,19 +130,19 @@ def messageHandler(message):
             if value <= 20:
                 # danger situation
                 n = random.randint(0,3)
-                return (random.choice(greetings) + recievedData["name"] + ", " + random.choice(batInfo) +
+                return (random.choice(greetings) + recievedData["userName"] + ", " + random.choice(batInfo) +
                 str(value) + batSuggestion[n])
 
             if value > 20 and value <= 75:
                 # normal situation
                 n = random.randint(4,6)
-                return (random.choice(greetings) + recievedData["name"] + ", " +
+                return (random.choice(greetings) + recievedData["userName"] + ", " +
                 random.choice(batInfo) + str(value) + batSuggestion[n])
 
             if value > 75:
                 # perfect condition
                 n = random.randint(7,8)
-                return (random.choice(greetings) + recievedData["name"] + ", " + random.choice(batInfo) +
+                return (random.choice(greetings) + recievedData["userName"] + ", " + random.choice(batInfo) +
                 str(value) + batSuggestion[n])
         else:
             print colors.WARNING + "invalid value, please provide the correct battery level" + colors.ENDC
@@ -146,7 +151,7 @@ def messageHandler(message):
     #Ip Address ??
 
     elif recievedData["typeID"] == "ipAddress":
-        return recievedData["name"] + ", My ip address is " + recievedData["value"]
+        return (random.choice(greetings) + recievedData["userName"] + random.choice(ipInfo) + recievedData["value"])
 
     else:
         print(colors.WARNING + "WHAT KIND OF DATA DID YOU SEND ME??" + colors.ENDC)

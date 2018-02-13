@@ -10,16 +10,18 @@
 
 ___
 
-### Plan draft
+### Project plan
 
 Work has been divided in two sub-programs:
 - Develop an iOS application in swift to be run in the robot
 - Develop a python server to be run in a computer 
+We decided to use a separate server for two main reasons: the first is the possibility to reuse the speech generation with any device or sofware and the other reason is to work on the project even without a mac OS device.
 
+Main phases of the project:
 1. SWIFT: elaborate internal state
 2. PYTHON: create a web socket server
 3. SWIFT: send state to server via web socket
-4. PYTHON: generate from state a "human" sentence and send back
+4. PYTHON: generate from state a natuaral language sentence and send back
 5. SWIFT: speech received sentence
 
 ___
@@ -31,7 +33,6 @@ In order to elaborate internal state we decided to take care of these particular
 var batteryL: Float {
     return UIDevice.current.batteryLevel
 }
-print("bottone premuto")
 UIDevice.current.isBatteryMonitoringEnabled = true
 var batteryLevel : Int
 batteryLevel = Int(batteryL * 100)
@@ -72,7 +73,7 @@ class server(tornado.websocket.WebSocketHandler):
         # called when a connection is closed
         localtime = time.asctime(time.localtime(time.time()))
         print (colors.OKBLUE +'[' + localtime + ']'+ colors.ENDC +
-            ' - Bye Bye ' + self.request.remote_ip)
+            ' - Bye Bye Client ' + self.request.remote_ip)
 
     def check_origin(self, origin):
         return True
@@ -116,17 +117,22 @@ func echoText(infoText : String){
             }
         }
 ```
-Internal state information are sent in JSON format which is composed converting this struct:
+Internal state information are stored in a struct:
 ```swift
-struct DoubleMessage {
-        var typeID: String
-        var value: String
-    }
-
-# Example: battery level is 56%
-"battery_56"
+struct DoubleMessage : Codable {
+    var typeID: String
+    var value: String
+    var userName: String
+}
 ```
-To generate a new message to be sent you simply have to generate a new `DoubleMessage`
+
+To generate a new message to be sent you simply have to convert the struct in a JSON string using JSON encoder. In orther to do that don't forget to add the key word `Codable` after declaration of the struct.
+```swift
+// Encoding the struct in json string
+let jsonEncoder = JSONEncoder()
+let jsonData = try? jsonEncoder.encode(toSpeech)
+let jsonString = String(data: jsonData!, encoding: .utf8)
+```
 ___
 
 ### 4. Generate a natural language sentence
@@ -149,20 +155,24 @@ ___
 
 For speech generation we decided to use AVFoundation framework developed by Apple, because it is easily integrable in an iOS application. To utter a sentence you have to implement this simple code in the main class `ViewController: UIViewController`:
 ```swift
+// Definition of speech variables
 let synth = AVSpeechSynthesizer()
 var myUtterance = AVSpeechUtterance(string: "")
 
 func speechFunc(speech : String){
+        // specify the string to be speeched 
         myUtterance = AVSpeechUtterance( string: speech)
+        // set the velocity of the voice
         myUtterance.rate = 0.5
+        // call the AVFoundation function which speaks
         synth.speak(myUtterance)
     }
 ```
 ___
 
 ### Sources
-* Swift: [Interacting with Objective-C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35)
 * Text to speech app swift 2014: [Tutorial](https://code.tutsplus.com/tutorials/create-a-text-to-speech-app-with-swift--cms-22229)
 * Web socket Swift library: [SwiftWebSocket](https://github.com/tidwall/SwiftWebSocket)
 * Web socket Python library: [Tornado](http://www.tornadoweb.org/en/stable/)
-* Double API repository [Github](https://github.com/doublerobotics/Basic-Control-SDK-iOS)
+* Double APIs repository: [Github](https://github.com/doublerobotics/Basic-Control-SDK-iOS)
+* Use Objective-C APIs with swift: [Interacting with Objective-C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35)
