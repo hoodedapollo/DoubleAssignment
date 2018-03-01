@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['sdk_5fdouble_5fvelocity',['SDK_DOUBLE_VELOCITY',['../_view_controller_8m.html#a7c6564b2a3a90d7c80408c11ba142903',1,'ViewController.m']]],
+  ['short_5fsleep',['SHORT_SLEEP',['../_view_controller_8m.html#a836e54f09b3655f8dd035f9fc551717a',1,'ViewController.m']]],
+  ['speech_5frecognition_5fmode',['SPEECH_RECOGNITION_MODE',['../key_8h.html#aefd1c6b429ce3508f283972909c6de47',1,'key.h']]],
+  ['startrecbutton',['startRecButton',['../interface_view_controller.html#ac5587cf1631fa2a1528663d4a530aa27',1,'ViewController']]],
+  ['startrecbutton_5fclick_3a',['StartRecButton_Click:',['../interface_view_controller.html#a32ead946e8d82c9dc5fd4754943c3a85',1,'ViewController']]],
+  ['starttime',['startTime',['../interface_view_controller.html#a1e05fae524f34798ae414037bbddef3a',1,'ViewController']]],
+  ['stop_5fdistance_5ffrom_5fgoal',['STOP_DISTANCE_FROM_GOAL',['../_view_controller_8m.html#a64dd8785f4fa782ee47e1848ff8beca8',1,'ViewController.m']]],
+  ['stoprecbutton',['stopRecButton',['../interface_view_controller.html#ae5d4be09394f292cc4a0c6720e1ca774',1,'ViewController']]],
+  ['stoprecbutton_5fclick_3a',['StopRecButton_Click:',['../interface_view_controller.html#ac98cf271e5c1769e6a2f5c5b2a4ec1ff',1,'ViewController']]],
+  ['stoprecbuttonflag',['stopRecButtonFlag',['../interface_view_controller.html#a9d8170287a606079ffbe0b73908e5b55',1,'ViewController']]],
+  ['subscription_5fkey',['SUBSCRIPTION_KEY',['../key_8h.html#aab1e3f077183c60df7024c5a1d0b5372',1,'key.h']]],
+  ['subscription_5fkey2',['SUBSCRIPTION_KEY2',['../key_8h.html#a2168d261784aac2ed062bb08b3aa4de6',1,'key.h']]],
+  ['subscription_5fkey3',['SUBSCRIPTION_KEY3',['../key_8h.html#aa8445feb64b6c6f8d23ba21a4252abaf',1,'key.h']]],
+  ['subscriptionkey',['subscriptionKey',['../interface_view_controller.html#af4e00d6837408d5feeca3e6437480b21',1,'ViewController']]],
+  ['subscriptionkey2',['subscriptionKey2',['../interface_view_controller.html#afc0911a37a16daa5a8cf0b0765a5bfb1',1,'ViewController']]],
+  ['subscriptionkey3',['subscriptionKey3',['../interface_view_controller.html#a317056f7c11e66ccf9d8ccc804bbfbda',1,'ViewController']]]
+];

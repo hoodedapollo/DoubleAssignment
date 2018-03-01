@@ -1,0 +1,8 @@
+platform :ios, '11.0'
+
+target 'DoubleApp' do
+    pod 'EstimoteIndoorSDK', :git => 'https://github.com/Estimote/iOS-Indoor-SDK.git'
+    #pod 'EstimoteSDK', '~> 4.27'
+   
+
+end

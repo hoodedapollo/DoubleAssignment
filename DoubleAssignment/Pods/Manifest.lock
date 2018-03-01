@@ -1,0 +1,24 @@
+PODS:
+  - EstimoteIndoorSDK (3.0.0-alpha.1):
+    - EstimoteSDK (~> 4.16.0)
+  - EstimoteSDK (4.16.2)
+
+DEPENDENCIES:
+  - EstimoteIndoorSDK (from `https://github.com/Estimote/iOS-Indoor-SDK.git`)
+
+EXTERNAL SOURCES:
+  EstimoteIndoorSDK:
+    :git: https://github.com/Estimote/iOS-Indoor-SDK.git
+
+CHECKOUT OPTIONS:
+  EstimoteIndoorSDK:
+    :commit: 0935fa14316e94174c030ba1a0a3f672e82e9167
+    :git: https://github.com/Estimote/iOS-Indoor-SDK.git
+
+SPEC CHECKSUMS:
+  EstimoteIndoorSDK: 6fbb58db35712b276f8b9978e4b4e5dbc87b484d
+  EstimoteSDK: 17d0778be064419dd905f41981f831052f4c19ee
+
+PODFILE CHECKSUM: 01ae0bd1679588b3971a0c30903c736f33af2321
+
+COCOAPODS: 1.4.0
