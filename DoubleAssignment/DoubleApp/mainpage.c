@@ -136,6 +136,8 @@
  *      <li> create a function to stop the micrphone before the double speaks and reactivate it afterwards in order to prevent it from looping on its own speech.
  *      <li> update the firmware of the Double to the version 10.0 to be able to get informations from the encoders and integrate them with the bluetooth positioning system. 
  *      <li> create a websocket connection between devices to share positions and develop a method to follow moving goals
+ *      <li> develop the code to make the double search for a person (proximity beacon) in all the known rooms (goal positions), say hi if it finds the person or report back
+             if it does not. (we began to develop the code but were not able to test it evan once so we didn't include the code in the project)
  *</ul>
  * \section appendix_sec Appendix
  *
