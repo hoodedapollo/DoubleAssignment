@@ -25,7 +25,7 @@
  *              <ul>
  *                  <li> phrases recognized with theris confidence level
  *                  <li> Intent with the highest score ad its score
- *                  <li> Type and vaulues of the Entities relative to the Intent
+ *                  <li> Type and values of the Entities relative to the Intent
  *              </ul>
  *              <li> Double position (x, y, orientation)
  *          </ul>
@@ -34,7 +34,7 @@
  *      <li> Move the Double toward a fixed goal position given by a vocal command
  *      <ul>
  *          <li> Double uses the goal position and its initial orientation to rotate toward the goal
- *          <li> Double moves toward the goal until the goal is within a ceratin range or the estimated travel time has elapsed (backup condition)
+ *          <li> Double moves toward the goal until the goal is within a certain range or the estimated travel time has elapsed (backup condition)
  *      </ul>
  *      <li> Make a test of the trigonometry calculations used to rotate the double toward the goal.
  *      <li> Disable the autonomous mode (stop the Double) whenever a button is pushed (security).   
@@ -53,6 +53,8 @@
  *          <li> lower position update frequency
  *      </ul>    
  *      <li> Orientation for the ipad is available only for ios 9.0+
+ *      <li> When building using the offiial app the orientation is counted clockwise from the y-axis; in order to make standard trigonometry calculations
+ *           a manual map must be built with the orientation which goes from 0 on the x-axis and is counted from the x-axis to the y-axis.
  *      <li> Position given by the beacons fluctuates a lot and the accuracy is very poor
  *      <li> The App for semi-auto mapping the location has poor pefrormances, better use the location builder class
  *      <li> Double Control SDK has no documentation 
@@ -64,15 +66,34 @@
  *
  * \section arch_sec Software Architecture
  *
- *  <img src="arch1.jpg" style="width:50%">
+ * \subsection arch_scheme Architecture Scheme
+ *
+ *  <img src="architecture.jpg" style="width:50%">
  * 
+ * \subsection arch_descr Architecture Description
+ *
+ *  After launching the app you can either control the Double Robot manually with the buttons on the interface or start the speech recognition by
+ *  pushing the start rec green button.
+ *  When the speech recognition is activated the registration are sent to the speech recognition server through webscoket connection and the result phrases
+ *  are sent to the view controller and to the LUIS service. The LUIS service parses the the phrases and sends the highest scoring recognized intent with 
+ *  relative entities to the view controller.
+ *  If a intent: none is parsed the view controller should stop the microphone then send an adequate string to the vocal synthetizer.
+ *  Else if a processable intent is detected it is translated into a command for the double. 
+ *  For security the Double command buttons on the interface have higher priority then the autonomous mode, so whenever a command button is pushed the 
+ *  Double stops whichever action it was doing.
+ *  In the specific case a goToAction intent with a known entity of type room is detected, the double shold move autonomously toward the room fixed a priory position.
+ *  In order to do this, the current position of the Double (x, y, orientation), published by Estimote localization each 0.2 seconds, is used to detrmine the
+ *  movements the robot must perform.   
+ *  The view controller is responsible for what the app does in the foreground, while the app delegate is responsible for the background behaviour.
+ *  If the double gets close/far to/from a proximity beacon or viceversa, the app delegate sends an adequate string to the vocal synthetizer. 
+ *  
  * \section sdkandtools_sec SDK and Tools
  *
  * <ul>
  *      <li> Xcode: an integrated development enviroment (IDE) for macOS containing a suite of software development tools
  *                  needed to develop iOS Apps
  *      <li> SpeechSDK: Bing Speech API cognitive services for speech recognition
- *      <li> Luis (Language Understanding Intelligent Service): extract the meaning of a phrase in a format which can be directly used the code (JSON)
+ *      <li> Luis (Language Understanding Intelligent Service): extract the meaning of a phrase in a format which can be directly used in the code (JSON)
  *      <li> EstimoteProximitySDK: trigger actions when the distance of the device from a proximity beacon gets over/under a certain threshold
  *      <li> EstiomoteIndoorSDK: makes position(x, y, orientation) available to the device
  *      <li> EstimoteSDK
@@ -118,9 +139,13 @@
  *</ul>
  * \section appendix_sec Appendix
  *
- *  \subsection Trigonometry
+ *  \subsection trig_sec Trigonometry
  
  *  <img src="trigonometry.png" style="width:50%">
+ *  
+ *  \subsection interface_sec User Interface
+ *  
+ *  <img src="interface.jpg" style="width:30%">
  *
  * \section biblio_sec Bibliography 
  * 
